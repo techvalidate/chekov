@@ -1,10 +1,5 @@
 class ReleasesController < ApplicationController
   
-  # GET /
-  def index
-    @release = Release.current
-  end
-  
   # GET /release/new
   def new
     @release = Release.new

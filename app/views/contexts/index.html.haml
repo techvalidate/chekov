@@ -1,0 +1,9 @@
+- if @release
+  %h1= @release.name
+  %p= link_to 'New Context', new_context_path
+  - @release.contexts.each do |context|
+    %h3= link_to context.name, context
+- else
+  %p
+    No current release defined.
+    = link_to 'Create one', new_release_path

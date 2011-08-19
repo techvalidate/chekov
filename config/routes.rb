@@ -1,8 +1,7 @@
 Tester::Application.routes.draw do
 
-  resources :releases do
-    resources :contexts
-  end
+  resources :contexts
+  resources :releases
   
   resources :users
   
@@ -10,7 +9,7 @@ Tester::Application.routes.draw do
   match 'authorize'=>'sessions#authorize', :as=>:authorize
   match 'logout'=>'sessions#logout',       :as=>:logout
   
-  root :to=>'releases#index'
+  root :to=>'contexts#index'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

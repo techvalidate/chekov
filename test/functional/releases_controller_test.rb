@@ -5,12 +5,6 @@ class ReleasesControllerTest < ActionController::TestCase
     login_as :jordan
   end
   
-  
-  test '/' do
-    get :index
-    assert_response :success
-  end
-  
   test '/release/new' do
     get :new
     assert_response :success
