@@ -1,5 +1,5 @@
 class ContextsController < ApplicationController
-  before_filter :load_current_release
+  before_filter :find_current_release
   
   # GET /
   def index
@@ -23,10 +23,5 @@ class ContextsController < ApplicationController
   rescue ActiveRecord::RecordInvalid
     render action: 'new'
   end
-  
-  protected
-  def load_current_release
-    @release = Release.current
-  end
-  
+
 end

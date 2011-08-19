@@ -4,4 +4,11 @@ class ApplicationController < ActionController::Base
   protect_from_forgery
   
   before_filter :login_required
+  
+  
+  protected
+  def find_current_release
+    @release = Release.current
+  end
+  
 end

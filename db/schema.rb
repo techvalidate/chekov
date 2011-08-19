@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110819204734) do
+ActiveRecord::Schema.define(:version => 20110819212842) do
 
   create_table "contexts", :force => true do |t|
     t.integer  "release_id"
@@ -22,6 +22,13 @@ ActiveRecord::Schema.define(:version => 20110819204734) do
   create_table "releases", :force => true do |t|
     t.string   "name"
     t.boolean  "current",    :default => true
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "stories", :force => true do |t|
+    t.integer  "context_id"
+    t.text     "description"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

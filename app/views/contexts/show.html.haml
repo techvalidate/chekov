@@ -1,2 +1,7 @@
 %h1= @release.name
 %h2= @context.name
+
+%p= link_to 'New Story', new_context_story_path(@context)
+
+- @context.stories.each do |story|
+  %p= story.description
