@@ -14,6 +14,7 @@ ActiveRecord::Schema.define(:version => 20110819193005) do
 
   create_table "releases", :force => true do |t|
     t.string   "name"
+    t.boolean  "current",    :default => true
     t.datetime "created_at"
     t.datetime "updated_at"
   end

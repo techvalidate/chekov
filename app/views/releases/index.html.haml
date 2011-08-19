@@ -1,0 +1,7 @@
+%h1 Current Release
+- if @release
+  %h2= @release.name
+- else
+  %p
+    No current release defined.
+    = link_to 'Create one', new_release_path

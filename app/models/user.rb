@@ -4,4 +4,6 @@ class User < ActiveRecord::Base
     User.find_by_email email
   end
   
+  def name() "#{first_name} #{last_name}" end
+  
 end
