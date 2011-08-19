@@ -1,5 +1,13 @@
 Tester::Application.routes.draw do
+
   resources :releases
+  resources :users
+  
+  match 'login'=>'sessions#login',         :as=>:login
+  match 'authorize'=>'sessions#authorize', :as=>:authorize
+  match 'logout'=>'sessions#logout',       :as=>:logout
+  
+  root :to=>'releases#index'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
@@ -57,7 +65,5 @@ Tester::Application.routes.draw do
   # This is a legacy wild controller route that's not recommended for RESTful applications.
   # Note: This route will make all actions in every controller accessible via GET requests.
   # match ':controller(/:action(/:id(.:format)))'
-  
-  
-  root :to=>'release#index'
+
 end
