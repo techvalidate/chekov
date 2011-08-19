@@ -9,6 +9,7 @@
     %ul
       %li= "Logged in as #{@current_user.name}"
       %li= link_to 'Logout', logout_path
+      %li= link_to 'Home', root_path
       %li= link_to 'New Release', new_release_path
   
     = yield

@@ -1,6 +1,9 @@
 Tester::Application.routes.draw do
 
-  resources :releases
+  resources :releases do
+    resources :contexts
+  end
+  
   resources :users
   
   match 'login'=>'sessions#login',         :as=>:login

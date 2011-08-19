@@ -1,0 +1,9 @@
+%h1 
+  New Context for
+  = @release.name
+
+= form_for [@release, @context] do |form|
+  %p Name
+  %p= form.text_field :name
+  
+  %p= form.submit 'Create'
