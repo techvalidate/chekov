@@ -1,9 +1,3 @@
-# Read about fixtures at http://api.rubyonrails.org/classes/Fixtures.html
-
-one:
-  context_id: 1
-  description: MyText
-
-two:
-  context_id: 1
-  description: MyText
+create_user:
+  context: app
+  description: Create a user

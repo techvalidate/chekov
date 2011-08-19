@@ -1,0 +1,11 @@
+%h1= @release.name
+%h2= link_to @context.name, @context
+
+= form_for [@context, @story] do |form|
+  %p= form.text_field :description
+
+  %ul
+    = form.fields_for :elements do |element|
+      %li= element.text_field :description
+      
+  %p=form.submit 'Update'

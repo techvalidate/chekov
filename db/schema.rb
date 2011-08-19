@@ -10,11 +10,19 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110819212842) do
+ActiveRecord::Schema.define(:version => 20110819221002) do
 
   create_table "contexts", :force => true do |t|
     t.integer  "release_id"
     t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "elements", :force => true do |t|
+    t.integer  "story_id"
+    t.text     "description"
+    t.integer  "position"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

@@ -7,4 +7,8 @@
   %p Description
   %p= form.text_field :description
   
+  %p Elements
+  = form.fields_for :elements do |element|
+    %p= element.text_field :description
+  
   %p= form.submit 'Create'

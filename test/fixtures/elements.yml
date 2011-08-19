@@ -1,0 +1,9 @@
+new_user_record:
+  story: create_user
+  position: 1
+  description: Create a new user record
+  
+user_attributes:
+  story: create_user
+  position: 2
+  description: Correct attributes

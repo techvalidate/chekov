@@ -1,5 +1,7 @@
 Tester::Application.routes.draw do
 
+  resources :elements
+
   resources :contexts do
     resources :stories
   end
