@@ -38,7 +38,7 @@ class StoriesControllerTest < ActionController::TestCase
     story = stories(:create_user)
     put :update, context_id: @context.id, id: story, story: {description: 'Updated'}
     assert_equal 'Updated', story.reload.description
-    assert_redirected_to context_story_path(@context, story)
+    assert_redirected_to @context
   end
 
 end

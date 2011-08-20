@@ -7,7 +7,6 @@ gem 'rails', '3.1.0.rc5'
 
 gem 'sqlite3'
 
-gem 'acts_as_list'
 gem 'haml'
 
 # Gems used only for assets and not required

@@ -26,7 +26,7 @@ class StoriesController < ApplicationController
   def update
     @story = @context.stories.find params[:id]
     @story.update_attributes! params[:story]
-    redirect_to [@context, @story]
+    redirect_to @context
   rescue ActiveRecord::RecordInvalid
     render action: 'show'
   end

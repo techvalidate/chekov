@@ -2,10 +2,17 @@
 %h2= link_to @context.name, @context
 
 = form_for [@context, @story] do |form|
+  %p Description
   %p= form.text_field :description
 
-  %ul
+  %p Tests
+  #Elements
     = form.fields_for :elements do |element|
-      %li= element.text_field :description
+      %p
+        = element.text_field :description, class: 'story_element'
+        = link_to 'x', element.object, :method=>:delete
       
+      
+  %p= link_to 'Add Test', '#', class: 'add_element'
+  
   %p=form.submit 'Update'

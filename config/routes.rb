@@ -6,6 +6,7 @@ Tester::Application.routes.draw do
     end
   end
   
+  resources :elements
   resources :releases
   resources :users
   
