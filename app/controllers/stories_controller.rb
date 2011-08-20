@@ -31,9 +31,4 @@ class StoriesController < ApplicationController
     render action: 'show'
   end
   
-  protected
-  def find_context
-    @context = @release.contexts.find params[:context_id]
-  end
-  
 end

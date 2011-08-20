@@ -4,7 +4,6 @@
 %p= link_to 'New Story', new_context_story_path(@context)
 
 - @context.stories.each do |story|
-  %p= link_to story.description, [@context, story]
-  %ul
-    - story.elements.each do |element|
-      %li= element.description
+  %h3= link_to story.description, [@context, story]
+  %p= pluralize story.elements.count, 'test'
+  %p= link_to 'Test', new_context_story_suite_path(@context, story)

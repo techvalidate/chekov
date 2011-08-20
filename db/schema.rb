@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110819221002) do
+ActiveRecord::Schema.define(:version => 20110820064408) do
 
   create_table "contexts", :force => true do |t|
     t.integer  "release_id"
@@ -19,6 +19,8 @@ ActiveRecord::Schema.define(:version => 20110819221002) do
     t.datetime "updated_at"
   end
 
+  add_index "contexts", ["release_id"], :name => "index_contexts_on_release_id"
+
   create_table "elements", :force => true do |t|
     t.integer  "story_id"
     t.text     "description"
@@ -26,6 +28,9 @@ ActiveRecord::Schema.define(:version => 20110819221002) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "elements", ["position"], :name => "index_elements_on_position"
+  add_index "elements", ["story_id"], :name => "index_elements_on_story_id"
 
   create_table "releases", :force => true do |t|
     t.string   "name"
@@ -40,6 +45,17 @@ ActiveRecord::Schema.define(:version => 20110819221002) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "stories", ["context_id"], :name => "index_stories_on_context_id"
+
+  create_table "suites", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "story_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "suites", ["story_id"], :name => "index_suites_on_story_id"
 
   create_table "users", :force => true do |t|
     t.string   "email"

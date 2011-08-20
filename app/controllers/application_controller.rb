@@ -11,4 +11,9 @@ class ApplicationController < ActionController::Base
     @release = Release.current
   end
   
+  protected
+  def find_context
+    @context = @release.contexts.find params[:context_id]
+  end
+  
 end
