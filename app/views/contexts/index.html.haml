@@ -3,6 +3,9 @@
   %p= link_to 'New Context', new_context_path
   - @release.contexts.each do |context|
     %h3= link_to context.name, context
+    %p= pluralize context.stories.count, 'Story'
+    %p= pluralize context.suites.count, 'Suite'
+    
 - else
   %p
     No current release defined.

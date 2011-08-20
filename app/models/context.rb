@@ -3,6 +3,7 @@ class Context < ActiveRecord::Base
   belongs_to :release
   
   has_many :stories
+  has_many :suites, :through=>:stories
   
   default_scope order('contexts.name')
   
