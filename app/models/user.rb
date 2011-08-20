@@ -7,5 +7,7 @@ class User < ActiveRecord::Base
   has_many :suites, :dependent=>:destroy
   
   def name() "#{first_name} #{last_name}" end
+    
+  validate :email, :presence=>true, :uniqueness=>true
   
 end

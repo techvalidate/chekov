@@ -6,6 +6,6 @@ class Context < ActiveRecord::Base
   
   default_scope order('contexts.name')
   
-  validates_presence_of :name
+  validates_presence_of :name, :release_id
   
 end

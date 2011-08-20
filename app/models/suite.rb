@@ -11,4 +11,7 @@ class Suite < ActiveRecord::Base
   
   accepts_nested_attributes_for :checks
   
+  validates_presence_of   :story_id, :user_id
+  validates_uniqueness_of :story_id, :scope=>:user_id
+  
 end

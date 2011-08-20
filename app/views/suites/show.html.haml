@@ -6,8 +6,7 @@
 = form_for [@context, @story, @suite] do |f|
   = f.fields_for :checks do |c|
     %p
-      = c.hidden_field :element_id
       = c.check_box :passed
       = c.label :passed, c.object.element.description
-    
-  %p= f.submit 'Save'
+
+  %p= f.submit 'Update'

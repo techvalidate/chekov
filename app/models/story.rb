@@ -9,6 +9,6 @@ class Story < ActiveRecord::Base
   
   default_scope order('stories.description')
   
-  validates_presence_of :description
+  validates_presence_of :description, :context_id
   
 end
