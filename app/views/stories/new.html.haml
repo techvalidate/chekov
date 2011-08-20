@@ -7,10 +7,10 @@
   %p= form.text_field :description
   
   %p Tests
-  = form.fields_for :elements do |element|
-    %p= element.text_field :description
+  #Elements
+    = form.fields_for :elements do |element|
+      %p= element.text_field :description, class: 'story_element'
   
-  
-  %p= link_to 'Add Test', '#', class: 'add_test'
+  %p= link_to 'Add Test', '#', class: 'add_element'
   
   %p= form.submit 'Create'
