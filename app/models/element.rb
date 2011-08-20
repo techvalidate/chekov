@@ -3,6 +3,8 @@ class Element < ActiveRecord::Base
   
   belongs_to :story
   
+  has_many :checks, :dependent=>:destroy
+  
   default_scope order('elements.position')
   
   validates_presence_of :description

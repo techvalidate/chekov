@@ -6,4 +6,9 @@
 - @context.stories.each do |story|
   %h3= link_to story.description, [@context, story]
   %p= pluralize story.elements.count, 'test'
-  %p= link_to 'Test', new_context_story_suite_path(@context, story)
+  - suite = Suite.locate story, current_user
+  - if suite.new_record?
+    %p= link_to 'Test', new_context_story_suite_path(@context, story, suite)
+  - else
+    %p= "#{suite.checks.passed.count} Passed, #{suite.checks.failed.count} Failed"
+    %p= link_to 'Retest', [:new, @context, story, suite]

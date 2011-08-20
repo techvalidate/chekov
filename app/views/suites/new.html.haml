@@ -1,0 +1,13 @@
+%h1= @release.name
+%h2= link_to @context.name, @context
+
+%p= @story.description
+
+= form_for [@context, @story, @suite] do |f|
+  - @story.elements.each_with_index do |element, i|
+    %p
+      = hidden_field_tag "suite[checks_attributes][#{i}][passed]", 0
+      = check_box_tag "suite[checks_attributes][#{i}][passed]", 1
+      = element.description
+    
+  %p= f.submit 'Save'

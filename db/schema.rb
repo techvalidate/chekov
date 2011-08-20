@@ -10,7 +10,18 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110820064408) do
+ActiveRecord::Schema.define(:version => 20110820070225) do
+
+  create_table "checks", :force => true do |t|
+    t.integer  "suite_id"
+    t.integer  "element_id"
+    t.boolean  "passed",     :default => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "checks", ["element_id"], :name => "index_checks_on_element_id"
+  add_index "checks", ["suite_id"], :name => "index_checks_on_suite_id"
 
   create_table "contexts", :force => true do |t|
     t.integer  "release_id"
