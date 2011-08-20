@@ -1,13 +1,12 @@
-%h1 
+%h2
   New Story for
-  = link_to @release.name, root_path
   = link_to @context.name, @context
 
 = form_for [@context, @story] do |form|
   %p Description
   %p= form.text_field :description
   
-  %p Elements
+  %p Tests
   = form.fields_for :elements do |element|
     %p= element.text_field :description
   

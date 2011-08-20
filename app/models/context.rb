@@ -4,6 +4,7 @@ class Context < ActiveRecord::Base
   
   has_many :stories
   has_many :suites, :through=>:stories
+  has_many :checks, :through=>:suites
   
   default_scope order('contexts.name')
   

@@ -1,14 +1,23 @@
-%h1= @release.name
 %h2= @context.name
 
-%p= link_to 'New Story', new_context_story_path(@context)
-
 - @context.stories.each do |story|
-  %h3= link_to story.description, [@context, story]
-  %p= pluralize story.elements.count, 'test'
   - suite = Suite.locate story, current_user
   - if suite.new_record?
-    %p= link_to 'Test', new_context_story_suite_path(@context, story, suite)
+    %h3= link_to story.description, new_context_story_suite_path(@context, story, suite)
+    %p= "#{pluralize story.elements.count, 'tests'}, performed by #{pluralize story.suites.count, 'other person'}"
   - else
-    %p= "#{suite.checks.passed.count} Passed, #{suite.checks.failed.count} Failed"
-    %p= link_to 'Retest', [:new, @context, story, suite]
+    %h3= link_to story.description, [@context, story, suite]
+    %p= "#{pluralize story.elements.count, 'tests'}, performed by you and #{pluralize (story.suites.count - 1), 'other person'}"
+    
+  - passed = story.checks.passed.count
+  - failed = story.checks.failed.count
+  %p
+    = "#{passed} Passed, #{failed} Failed, "
+    - if (passed + failed) == 0
+      0% Complete
+    - else
+      = "#{(passed / (passed + failed).to_f * 100).round}% Complete"
+  = bar_graph passed, (passed + failed)
+  
+    
+%p= link_to 'New Story', new_context_story_path(@context)

@@ -6,11 +6,12 @@
     = csrf_meta_tags
     
   %body
-    %ul
-      %li
-        Current Release:
-        = link_to @release.name, root_path
-      %li= "Logged in as #{@current_user.name}"
-      %li= link_to 'Logout', logout_path
+    #Content
+      #Main
+        #Login
+          = @current_user.name
+          = link_to 'Logout', logout_path
+        
+        #Release= link_to @release.name, root_path
   
-    = yield
+        = yield

@@ -1,12 +1,22 @@
-- if @release
-  %h1= @release.name
-  %p= link_to 'New Context', new_context_path
-  - @release.contexts.each do |context|
-    %h3= link_to context.name, context
-    %p= pluralize context.stories.count, 'Story'
-    %p= pluralize context.suites.count, 'Suite'
-    
-- else
+- @release.contexts.each do |context|
+  - stories = context.stories.count
+  - suites = context.suites.count
+  %h3= link_to context.name, context
   %p
-    No current release defined.
-    = link_to 'Create one', new_release_path
+    = "#{pluralize stories, 'Story'}, #{pluralize suites, 'Test'}, "
+    - if stories == 0
+      0.00 Coverage
+    - else
+      = "#{(suites / stories.to_f).round(2)} Coverage"
+  - passed = context.checks.passed.count
+  - failed = context.checks.failed.count
+  %p
+    = "#{passed} Passed, #{failed} Failed, "
+    - if (passed + failed) == 0
+      0% Complete
+    - else
+      = "#{(passed / (passed + failed).to_f * 100).round}% Complete"
+  = bar_graph passed, (passed + failed)
+      
+      
+%p= link_to 'New Context', new_context_path

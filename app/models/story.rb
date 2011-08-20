@@ -2,6 +2,7 @@ class Story < ActiveRecord::Base
   
   belongs_to :context
   
+  has_many :checks,   :through=>:suites
   has_many :elements, :dependent=>:destroy
   has_many :suites,   :dependent=>:destroy
   

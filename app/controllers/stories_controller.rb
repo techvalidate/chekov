@@ -10,7 +10,7 @@ class StoriesController < ApplicationController
   # GET /contexts/:context_id/stories/new
   def new
     @story = @context.stories.build
-    5.times{ @story.elements.build }
+    10.times{ @story.elements.build }
   end
   
   # POST /contexts/:context_id/stories
