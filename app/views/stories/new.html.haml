@@ -10,4 +10,7 @@
   = form.fields_for :elements do |element|
     %p= element.text_field :description
   
+  
+  %p= link_to 'Add Test', '#', class: 'add_test'
+  
   %p= form.submit 'Create'
