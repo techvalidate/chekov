@@ -1,0 +1,10 @@
+%h2 My Failed Tests
+
+- @release.contexts.each do |context|
+  - if @current_user.checks.from_context(context).failed.count > 0
+    %h3= link_to context.name, context
+    - context.stories.each do |story|
+      - if @current_user.checks.from_story(story).failed.count > 0
+        - suite = @current_user.suites.where('story_id = ?', story.id).first
+        %p= link_to story.description, [context, story, suite]
+        %p= "#{suite.checks.passed.count} passed, #{suite.checks.failed.count} failed"

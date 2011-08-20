@@ -4,6 +4,7 @@ class User < ActiveRecord::Base
     User.find_by_email email
   end
   
+  has_many :checks, :through=>:suites
   has_many :suites, :dependent=>:destroy
   
   def name() "#{first_name} #{last_name}" end

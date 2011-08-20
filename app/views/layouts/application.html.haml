@@ -9,8 +9,10 @@
     #Content
       #Main
         #Login
-          = @current_user.name
-          = link_to 'Logout', logout_path
+          %p
+            = @current_user.name
+            = link_to 'Logout', logout_path
+          %p= link_to pluralize(@current_user.checks.from_release(@release).failed.count, 'Failed Test'), @current_user
         
         #Release= link_to @release.name, root_path
   
