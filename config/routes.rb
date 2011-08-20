@@ -1,4 +1,4 @@
-Tester::Application.routes.draw do
+Chekov::Application.routes.draw do
 
   resources :contexts do
     resources :stories do

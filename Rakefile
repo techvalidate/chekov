@@ -4,4 +4,4 @@
 
 require File.expand_path('../config/application', __FILE__)
 
-Tester::Application.load_tasks
+Chekov::Application.load_tasks
