@@ -12,6 +12,7 @@ end
 # Heroku
 group :production do
   gem 'pg'
+  gem 'thin'
 end
 
 gem 'haml'
