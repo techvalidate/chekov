@@ -1,22 +1,19 @@
-- @release.contexts.each do |context|
-  - stories = context.stories.count
-  - suites = context.suites.count
-  %h3= link_to context.name, context
-  %p
-    = "#{pluralize stories, 'Story'}, #{pluralize suites, 'Test'}, "
-    - if stories == 0
-      0.00 Coverage
-    - else
-      = "#{(suites / stories.to_f).round(2)} Coverage"
-  - passed = context.checks.passed.count
-  - failed = context.checks.failed.count
-  %p
-    = "#{passed} Passed, #{failed} Failed, "
-    - if (passed + failed) == 0
-      0% Complete
-    - else
-      = "#{(passed / (passed + failed).to_f * 100).round}% Complete"
-  = bar_graph passed, (passed + failed)
-      
+%table.data
+  %tr
+    %th Context
+    - Suite.browsers.each do |browser|
+      %th= browser
+    %th Blended
+  - @release.contexts.each do |context|
+    %tr
+      %td= link_to context.name, context
+      - Suite.browsers.each do |browser|
+        %td{style: "background-color: #{colorize context.passed_for(browser)}", class: context.coverage(browser)}= context.passed_for(browser)
+      %td{style: "background-color: #{colorize context.passed_blended}", class: "#{context.coverage} strong"}= context.passed_blended
+  %tr.strong
+    %td Total
+    - Suite.browsers.each do |browser|
+      %td{style: "background-color: #{colorize @release.passed_for(browser)}", class: @release.coverage(browser)}= @release.passed_for browser
+    %td{style: "background-color: #{colorize @release.passed_blended}", class: @release.coverage}= @release.passed_blended
       
 %p= link_to 'New Context', new_context_path
