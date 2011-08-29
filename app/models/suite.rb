@@ -1,7 +1,11 @@
 class Suite < ActiveRecord::Base
   
-  def self.locate(story, user)
-    Suite.where(story_id: story, user_id: user).first || story.suites.build(user: user)
+  def self.browsers
+    [:ie6, :ie8, :ie9, :ff, :chrome]
+  end
+  
+  def self.locate(story, user, browser)
+    Suite.where(story_id: story, user_id: user).for_browser(browser).first || story.suites.build(user: user, browser: browser)
   end
   
   belongs_to :story
@@ -11,7 +15,17 @@ class Suite < ActiveRecord::Base
   
   accepts_nested_attributes_for :checks
   
+  scope :for_browser, lambda{ |brwsr| where(brwsr.to_sym=>true) }
+  
+  def browser
+    Suite.browsers.each{|b| return b if __send__("#{b}?")}
+  end
+
+  def browser=(sym)
+    Suite.browsers.each{|b| __send__ "#{b}=", false}
+    __send__ "#{sym}=", true
+  end
+  
   validates_presence_of   :story_id, :user_id
-  validates_uniqueness_of :story_id, :scope=>:user_id
   
 end

@@ -10,8 +10,12 @@ class SuitesController < ApplicationController
   
   # GET /contexts/:context_id/stories/:story_id/suites/new
   def new
-    @suite = Suite.locate @story, current_user
-    redirect_to [@context, @story, @suite] and return unless @suite.new_record?
+    if params[:suite] && params[:suite][:browser]
+      @suite = Suite.locate @story, current_user, params[:suite][:browser]
+      redirect_to [@context, @story, @suite] and return unless @suite.new_record?
+    else
+      @suite = @story.suites.build
+    end
     @story.elements.each{ |e| @suite.checks.build element: e}
   end
   

@@ -1,13 +1,14 @@
 %h2= @context.name
 
 - @context.stories.each do |story|
-  - suite = Suite.locate story, current_user
-  - if suite.new_record?
-    %h3= link_to story.description, new_context_story_suite_path(@context, story, suite)
-    %p= "#{pluralize story.elements.count, 'tests'}, performed by #{pluralize story.suites.count, 'other person'}"
-  - else
-    %h3= link_to story.description, [@context, story, suite]
-    %p= "#{pluralize story.elements.count, 'tests'}, performed by you and #{pluralize (story.suites.count - 1), 'other person'}"
+  %h3= story.description
+  %p
+    - Suite.browsers.each do |browser|
+      - suite = Suite.locate story, current_user, browser
+      - if suite.new_record?
+        = link_to browser, new_context_story_suite_path(@context, story, suite, 'suite[browser]'=>browser)
+      - else
+        %strong= link_to browser, [@context, story, suite]
     
   - passed = story.checks.passed.count
   - failed = story.checks.failed.count

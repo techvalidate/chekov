@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110820204805) do
+ActiveRecord::Schema.define(:version => 20110829164929) do
 
   create_table "checks", :force => true do |t|
     t.integer  "suite_id"
@@ -62,8 +62,18 @@ ActiveRecord::Schema.define(:version => 20110820204805) do
     t.integer  "story_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "ie6",        :default => false
+    t.boolean  "ie8",        :default => false
+    t.boolean  "ie9",        :default => false
+    t.boolean  "ff",         :default => false
+    t.boolean  "chrome",     :default => false
   end
 
+  add_index "suites", ["chrome"], :name => "index_suites_on_chrome"
+  add_index "suites", ["ff"], :name => "index_suites_on_ff"
+  add_index "suites", ["ie6"], :name => "index_suites_on_ie6"
+  add_index "suites", ["ie8"], :name => "index_suites_on_ie8"
+  add_index "suites", ["ie9"], :name => "index_suites_on_ie9"
   add_index "suites", ["story_id"], :name => "index_suites_on_story_id"
 
   create_table "users", :force => true do |t|

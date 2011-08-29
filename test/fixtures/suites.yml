@@ -1,3 +1,4 @@
 jordan_create_user:
   user: jordan
   story: create_user
+  ff: true

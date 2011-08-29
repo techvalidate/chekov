@@ -23,7 +23,7 @@ class SuitesControllerTest < ActionController::TestCase
   test '/contexts/:context_id/stories/:story_id/suites/new with existing suite' do
     story = stories(:create_user)
     context = story.context
-    get :new, context_id: context.id, story_id: story.id
+    get :new, context_id: context.id, story_id: story.id, suite: {browser: 'ff'}
     assert_redirected_to context_story_suite_path(context, story, suites(:jordan_create_user))
   end
   

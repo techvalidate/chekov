@@ -1,5 +1,7 @@
 %h2= link_to @context.name, @context
 
+%h3= @suite.browser
+
 %p= @story.description
 
 = form_for [@context, @story, @suite] do |f|
