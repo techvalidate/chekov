@@ -15,7 +15,7 @@ class Suite < ActiveRecord::Base
   
   accepts_nested_attributes_for :checks
   
-  scope :for_browser, lambda{ |brwsr| where(brwsr.to_sym=>true) }
+  scope :for_browser, lambda{ |brwsr| brwsr.nil? ? where('') : where(brwsr.to_sym=>true) }
   
   def browser
     Suite.browsers.each{|b| return b if __send__("#{b}?")}

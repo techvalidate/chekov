@@ -15,6 +15,8 @@ input[type=text] {
   width: 30em;
 }
 
+.strong{font-weight: bold}
+
 /****************************/
 /*       L A Y O U T        */
 /****************************/
@@ -39,6 +41,43 @@ input[type=text] {
 
 #Release {
   font-size: 2em;
+}
+
+/****************************/
+/*  D A T A   T A B L E S   */
+/****************************/
+table.data {
+	width: 100%;
+	border-collapse: collapse;
+}
+
+table.data th {
+	padding: 6px 4px 6px 8px;
+	color: #666;
+	text-align: left;
+	border-top: 1px solid #ccc;
+	border-bottom: 1px solid #ccc;
+	background-color: #e6e6e6;
+	text-transform: uppercase;
+	font-size: 11px;
+}
+
+table.data td {
+	vertical-align: middle;
+	padding: 8px 4px 8px 8px;
+	border-bottom: solid 1px #E6E6E6;
+	border-right: solid 1px #E6E6E6;
+	line-height: 16px;
+}
+
+table td.coverage_empty {
+  background: url('coverage_empty.png') no-repeat right center;
+}
+table td.coverage_half {
+  background: url('coverage_half.png') no-repeat right center;
+}
+table td.coverage_full {
+  background: url('coverage_full.png') no-repeat right center;
 }
 
 

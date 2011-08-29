@@ -8,11 +8,7 @@ module ApplicationHelper
       end
       
       fill = percentage > 100 ? 100 : percentage
-      if fill == 100
-        color = 'rgb(0%, 100%, 0%)'
-      else
-        color = "rgb(#{100}%, #{fill}%, 0%)"
-      end
+      color = colorize fill
 
       content_tag :table, class: 'percentage' do 
         content_tag :tr, class: css do
@@ -22,5 +18,13 @@ module ApplicationHelper
         end
       end
     end
-  
+    
+    def colorize(fill)
+      if fill == 100
+        color = 'rgb(0%, 100%, 0%)'
+      else
+        color = "rgb(#{100}%, #{fill}%, 0%)"
+      end
+    end
+    
 end
