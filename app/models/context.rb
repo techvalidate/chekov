@@ -14,11 +14,8 @@ class Context < ActiveRecord::Base
   end
   
   def passed_blended
-    total = 0
-    Suite.browsers.each do |browser|
-      total = total + passed_for(browser)
-    end
-    (total / Suite.browsers.count.to_f).round
+    return 0 if browsers.count.zero?
+    (browsers.sum{|b| passed_for b} / browsers.count.to_f).round
   end
   
   def coverage(browser=nil)
@@ -30,6 +27,10 @@ class Context < ActiveRecord::Base
     else
       'coverage_full'
     end
+  end
+  
+  def browsers
+    Suite.browsers.select{|b| __send__ "#{b}?"}
   end
   
   validates_presence_of :name, :release_id

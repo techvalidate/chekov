@@ -16,11 +16,8 @@ class Story < ActiveRecord::Base
   end
   
   def passed_blended
-    total = 0
-    Suite.browsers.each do |browser|
-      total = total + passed_for(browser)
-    end
-    (total / Suite.browsers.count.to_f).round
+    return 0 if context.browsers.count.zero?
+    (context.browsers.sum{|b| passed_for b} / context.browsers.count.to_f).round
   end
   
   def coverage(browser=nil)

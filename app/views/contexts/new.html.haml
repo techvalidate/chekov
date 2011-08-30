@@ -3,7 +3,5 @@
   = @release.name
 
 = form_for @context do |form|
-  %p Name
-  %p= form.text_field :name
-  
+  = render form
   %p= form.submit 'Create'

@@ -8,7 +8,10 @@
     %tr
       %td= link_to context.name, context
       - Suite.browsers.each do |browser|
-        %td{style: "background-color: #{colorize context.passed_for(browser)}", class: context.coverage(browser)}= context.passed_for(browser)
+        - if context.__send__ "#{browser}?"
+          %td{style: "background-color: #{colorize context.passed_for(browser)}", class: context.coverage(browser)}= context.passed_for(browser)
+        - else
+          %td &nbsp;
       %td{style: "background-color: #{colorize context.passed_blended}", class: "#{context.coverage} strong"}= context.passed_blended
   %tr.strong
     %td Total

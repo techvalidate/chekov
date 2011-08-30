@@ -1,0 +1,7 @@
+%h2 
+  Edit
+  = @context.name
+
+= form_for @context do |form|
+  = render form
+  %p= form.submit 'Update'

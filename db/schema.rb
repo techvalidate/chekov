@@ -1,3 +1,4 @@
+# encoding: UTF-8
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -10,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110829164929) do
+ActiveRecord::Schema.define(:version => 20110830201206) do
 
   create_table "checks", :force => true do |t|
     t.integer  "suite_id"
@@ -28,8 +29,18 @@ ActiveRecord::Schema.define(:version => 20110829164929) do
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "ie6",        :default => true
+    t.boolean  "ie8",        :default => true
+    t.boolean  "ie9",        :default => true
+    t.boolean  "ff",         :default => true
+    t.boolean  "chrome",     :default => true
   end
 
+  add_index "contexts", ["chrome"], :name => "index_contexts_on_chrome"
+  add_index "contexts", ["ff"], :name => "index_contexts_on_ff"
+  add_index "contexts", ["ie6"], :name => "index_contexts_on_ie6"
+  add_index "contexts", ["ie8"], :name => "index_contexts_on_ie8"
+  add_index "contexts", ["ie9"], :name => "index_contexts_on_ie9"
   add_index "contexts", ["release_id"], :name => "index_contexts_on_release_id"
 
   create_table "elements", :force => true do |t|
