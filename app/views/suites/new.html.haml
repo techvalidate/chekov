@@ -4,7 +4,7 @@
 
 = form_for [@context, @story, @suite] do |f|
   %p
-    - Suite.browsers.each do |browser|
+    - @context.browsers.each do |browser|
       = f.radio_button :browser, browser
       = f.label "browser_#{browser}", browser
   = f.fields_for :checks do |c|
