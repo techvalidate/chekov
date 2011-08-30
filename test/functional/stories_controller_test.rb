@@ -19,7 +19,7 @@ class StoriesControllerTest < ActionController::TestCase
   test '/contexts/:context_id/stories with valid params and POST' do
     assert_difference('Story.count') do
       assert_difference('Element.count') do
-        post :create, context_id: @context.id, story: {description: 'New', elements_attributes: {0=>{description: 'Element'}}}
+        post :create, context_id: @context.id, story: {name: 'New', elements_attributes: {0=>{description: 'Element'}}}
         assert_equal @context, assigns(:story).context
         assert_equal 1, assigns(:story).elements.count
         assert_redirected_to @context
@@ -29,7 +29,7 @@ class StoriesControllerTest < ActionController::TestCase
   
   test '/contexts/:context_id/stories with invalid params and POST' do
     assert_no_difference('Story.count') do
-      post :create, context_id: @context.id, story: {description: ''}
+      post :create, context_id: @context.id, story: {name: ''}
       assert_response :success
     end
   end

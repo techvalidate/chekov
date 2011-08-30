@@ -1,7 +1,9 @@
 create_user:
   context: app
+  name: Create
   description: Create a user
   
 create_project:
   context: app
+  name: Create
   description: Create a project

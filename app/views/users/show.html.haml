@@ -6,5 +6,5 @@
     - context.stories.each do |story|
       - if @current_user.checks.from_story(story).failed.count > 0
         - suite = @current_user.suites.where('story_id = ?', story.id).first
-        %p= link_to story.description, [context, story, suite]
+        %p= link_to story.name, [context, story, suite]
         %p= "#{suite.checks.passed.count} passed, #{suite.checks.failed.count} failed"

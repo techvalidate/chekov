@@ -8,7 +8,7 @@
     %th Blended
   - @context.stories.each do |story|
     %tr
-      %td= link_to story.description, [@context, story]
+      %td= link_to story.name, [@context, story]
       - @context.browsers.each do |browser|
         %td{style: "background-color: #{colorize story.passed_for(browser)}", class: story.coverage(browser)}= link_to story.passed_for(browser), new_context_story_suite_path(@context, story, 'suite[browser]'=>browser)
       %td{style: "background-color: #{colorize story.passed_blended}", class: "#{story.coverage} strong"}= story.passed_blended

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110830201206) do
+ActiveRecord::Schema.define(:version => 20110830235455) do
 
   create_table "checks", :force => true do |t|
     t.integer  "suite_id"
@@ -64,6 +64,7 @@ ActiveRecord::Schema.define(:version => 20110830201206) do
     t.text     "description"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "name"
   end
 
   add_index "stories", ["context_id"], :name => "index_stories_on_context_id"

@@ -31,6 +31,6 @@ class Story < ActiveRecord::Base
     end
   end
   
-  validates_presence_of :description, :context_id
+  validates_presence_of :name, :context_id
   
 end

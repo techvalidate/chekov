@@ -3,8 +3,11 @@
   = link_to @context.name, @context
 
 = form_for [@context, @story] do |form|
+  %p Name
+  %p= form.text_field :name
+
   %p Description
-  %p= form.text_field :description
+  %p= form.text_area :description
   
   %p Tests
   #Elements
