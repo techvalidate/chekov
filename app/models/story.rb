@@ -8,7 +8,7 @@ class Story < ActiveRecord::Base
   
   accepts_nested_attributes_for :elements, reject_if: lambda {|e| e[:description].blank? }, allow_destroy: true
   
-  default_scope order('stories.description')
+  default_scope order('stories.name')
   
   def passed_for(browser)
     return 0 if checks.for_browser(browser).count.zero?
