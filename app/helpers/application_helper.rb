@@ -27,4 +27,19 @@ module ApplicationHelper
       end
     end
     
+    def name_of(browser_sym)
+      case browser_sym
+      when :ie6
+        'IE 6'
+      when :ie8
+        'IE 8'
+      when :ie9
+        'IE 9'
+      when :ff
+        'Firefox'
+      when :chrome
+        'Chrome'
+      end
+    end
+    
 end

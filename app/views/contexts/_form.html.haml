@@ -1,6 +1,7 @@
 %p Name
 %p= form.text_field :name
 %p
+  Browser: 
   - Suite.browsers.each do |browser|
     = form.check_box browser
-    = form.label browser
+    = form.label browser, name_of(browser)

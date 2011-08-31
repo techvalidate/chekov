@@ -1,12 +1,15 @@
 %h2= link_to @context.name, @context
 
-%p= @story.description
+%h3= link_to @story.name, [@context, @story]
+
+= BlueCloth.new(@story.description).to_html.html_safe
 
 = form_for [@context, @story, @suite] do |f|
   %p
+    Browser:
     - @context.browsers.each do |browser|
       = f.radio_button :browser, browser
-      = f.label "browser_#{browser}", browser
+      = f.label "browser_#{browser}", name_of(browser)
   = f.fields_for :checks do |c|
     %p
       = c.hidden_field :element_id
