@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110830235455) do
+ActiveRecord::Schema.define(:version => 20110912182303) do
 
   create_table "checks", :force => true do |t|
     t.integer  "suite_id"
@@ -29,11 +29,12 @@ ActiveRecord::Schema.define(:version => 20110830235455) do
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "ie6",        :default => true
-    t.boolean  "ie8",        :default => true
-    t.boolean  "ie9",        :default => true
-    t.boolean  "ff",         :default => true
-    t.boolean  "chrome",     :default => true
+    t.boolean  "ie6",         :default => true
+    t.boolean  "ie8",         :default => true
+    t.boolean  "ie9",         :default => true
+    t.boolean  "ff",          :default => true
+    t.boolean  "chrome",      :default => true
+    t.text     "description"
   end
 
   add_index "contexts", ["chrome"], :name => "index_contexts_on_chrome"
