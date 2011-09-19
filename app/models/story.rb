@@ -10,9 +10,9 @@ class Story < ActiveRecord::Base
   
   default_scope order('stories.name')
   
-  def passed_for(browser)
-    return 0 if checks.for_browser(browser).count.zero?
-    (checks.for_browser(browser).passed.count / checks.for_browser(browser).count.to_f * 100).round
+  def passed_for(browser, user=nil)
+    return 0 if checks.for_browser(browser).from_user(user).count.zero?
+    (checks.for_browser(browser).from_user(user).passed.count / checks.for_browser(browser).from_user(user).count.to_f * 100).round
   end
   
   def passed_blended

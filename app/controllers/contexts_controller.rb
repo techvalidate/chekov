@@ -3,6 +3,7 @@ class ContextsController < ApplicationController
   
   # GET /
   def index
+    @user = User.find params[:user_id] unless params[:user_id].blank?
   end
   
   # GET /contexts/:id

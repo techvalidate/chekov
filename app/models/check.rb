@@ -11,5 +11,6 @@ class Check < ActiveRecord::Base
   scope :from_context, lambda{|context| includes(:suite=>{:story=>:context}).where('contexts.id = ?', context.id)}
   scope :from_release, lambda{|release| includes(:suite=>{:story=>:context}).where('contexts.release_id = ?', release.id)}
   scope :from_story,   lambda{|story|   includes(:suite=>:story).where('stories.id = ?', story.id)}
+  scope :from_user,    lambda{|user|    includes(:suite).where('suites.user_id = ?', user.id) if user}
   
 end

@@ -8,14 +8,14 @@ class Context < ActiveRecord::Base
   
   default_scope order('contexts.name')
   
-  def passed_for(browser)
+  def passed_for(browser, user=nil)
     return 0 if stories.count.zero?
-    (stories.to_a.sum{|s|s.passed_for browser} / stories.count.to_f).round
+    (stories.to_a.sum{|s|s.passed_for browser, user} / stories.count.to_f).round
   end
   
-  def passed_blended
+  def passed_blended(user=nil)
     return 0 if browsers.count.zero?
-    (browsers.sum{|b| passed_for b} / browsers.count.to_f).round
+    (browsers.sum{|b| passed_for b, user} / browsers.count.to_f).round
   end
   
   def coverage(browser=nil)
