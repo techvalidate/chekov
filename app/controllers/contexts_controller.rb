@@ -9,6 +9,7 @@ class ContextsController < ApplicationController
   # GET /contexts/:id
   def show
     @context = @release.contexts.find params[:id]
+    @user = User.find params[:user_id] unless params[:user_id].blank?
   end
   
   # GET /contexts/:id/edit

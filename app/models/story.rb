@@ -15,9 +15,9 @@ class Story < ActiveRecord::Base
     (checks.for_browser(browser).from_user(user).passed.count / checks.for_browser(browser).from_user(user).count.to_f * 100).round
   end
   
-  def passed_blended
+  def passed_blended(user=nil)
     return 0 if context.browsers.count.zero?
-    (context.browsers.sum{|b| passed_for b} / context.browsers.count.to_f).round
+    (context.browsers.sum{|b| passed_for b, user} / context.browsers.count.to_f).round
   end
   
   def coverage(browser=nil)
