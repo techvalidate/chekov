@@ -22,11 +22,11 @@
           %td{style: "background-color: #{colorize context.passed_for(browser, @user)}", class: context.coverage(browser)}= context.passed_for(browser, @user)
         - else
           %td &nbsp;
-      %td{style: "background-color: #{colorize context.passed_blended}", class: "#{context.coverage} strong"}= context.passed_blended(@user)
+      %td{style: "background-color: #{colorize context.passed_blended(@user)}", class: "#{context.coverage} strong"}= context.passed_blended(@user)
   %tr.strong
     %td Total
     - Suite.browsers.each do |browser|
-      %td{style: "background-color: #{colorize @release.passed_for(browser)}", class: @release.coverage(browser)}= @release.passed_for browser, @user
+      %td{style: "background-color: #{colorize @release.passed_for(browser, @user)}", class: @release.coverage(browser)}= @release.passed_for browser, @user
     %td{style: "background-color: #{colorize @release.passed_blended}", class: @release.coverage}= @release.passed_blended(@user)
       
 %p= link_to 'New Context', new_context_path
