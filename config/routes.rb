@@ -6,6 +6,7 @@ Chekov::Application.routes.draw do
     end
   end
   
+  resources :assignments
   resources :elements
   resources :releases
   resources :users

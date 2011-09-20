@@ -11,7 +11,22 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110912182303) do
+ActiveRecord::Schema.define(:version => 20110920230311) do
+
+  create_table "assignments", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "context_id"
+    t.boolean  "ie6",        :default => false
+    t.boolean  "ie8",        :default => false
+    t.boolean  "ie9",        :default => false
+    t.boolean  "ff",         :default => false
+    t.boolean  "chrome",     :default => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "assignments", ["context_id"], :name => "index_assignments_on_context_id"
+  add_index "assignments", ["user_id"], :name => "index_assignments_on_user_id"
 
   create_table "checks", :force => true do |t|
     t.integer  "suite_id"

@@ -31,3 +31,23 @@
     %td{style: "background-color: #{colorize @context.passed_blended(@user)}", class: @context.coverage}= @context.passed_blended(@user)
     
 %p= link_to 'New Story', new_context_story_path(@context)
+
+
+%br
+%br
+%table.data
+  %tr
+    %th User
+    - @context.browsers.each do |browser|
+      %th= browser  
+  - User.all.each do |user|
+    %tr
+      %td= user.name
+      - @context.browsers.each do |browser|
+        %td
+          = form_for Assignment.new, remote: true do |f|
+            = hidden_field_tag :context_id, @context.id
+            = hidden_field_tag :user_id, user.id
+            = hidden_field_tag :browser, browser
+            = check_box_tag 'assignment', 'true', user.assigned?(@context, browser), user_id: user.id, context_id: @context.id, browser: browser, class: 'assignment'
+          
