@@ -1,4 +1,13 @@
-%h2 My Assignments
+%h2 Assignments
+
+= form_tag current_user, :method=>:get do
+  %p
+    %select{name: 'user_id'}
+      - User.all.each do |u|
+        - options = {value: u.id}
+        - options[:selected] = 'selected' if u == @user
+        %option{options}= u.name
+    = submit_tag 'Show'
 
 
 %table.data
