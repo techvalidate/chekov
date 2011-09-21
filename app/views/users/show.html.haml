@@ -1,10 +1,16 @@
-%h2 My Failed Tests
+%h2 My Assignments
 
-- @release.contexts.each do |context|
-  - if @current_user.checks.from_context(context).failed.count > 0
-    %h3= link_to context.name, context
-    - context.stories.each do |story|
-      - if @current_user.checks.from_story(story).failed.count > 0
-        - suite = @current_user.suites.where('story_id = ?', story.id).first
-        %p= link_to story.name, [context, story, suite]
-        %p= "#{suite.checks.passed.count} passed, #{suite.checks.failed.count} failed"
+
+%table.data
+  %tr
+    %th Context
+    - Suite.browsers.each do |browser|
+      %th= browser
+  - @release.contexts.each do |context|
+    %tr
+      %td= link_to context.name, context
+      - Suite.browsers.each do |browser|
+        - if current_user.assigned?(context, browser)
+          %td{style: "background-color: #{colorize context.passed_for(browser, current_user)}"}= context.passed_for(browser, current_user)
+        - else
+          %td 
