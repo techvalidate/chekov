@@ -19,7 +19,7 @@
     %tr
       %td= link_to context.name, context
       - Suite.browsers.each do |browser|
-        - if current_user.assigned?(context, browser)
-          %td{style: "background-color: #{colorize context.passed_for(browser, current_user)}"}= context.passed_for(browser, current_user)
+        - if @user.assigned?(context, browser)
+          %td{style: "background-color: #{colorize context.passed_for(browser, @user)}"}= context.passed_for(browser, @user)
         - else
           %td 
