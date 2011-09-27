@@ -21,17 +21,6 @@ class Release < ActiveRecord::Base
     (total / Suite.browsers.count.to_f).round
   end
   
-  def coverage(browser=nil)
-    case suites.for_browser(browser).collect(&:user).uniq.count # SQL?
-    when 0
-      'coverage_empty'
-    when 1
-      'coverage_half'
-    else
-      'coverage_full'
-    end
-  end
-  
   validates_presence_of :name
   
 end

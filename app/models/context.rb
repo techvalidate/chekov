@@ -19,17 +19,6 @@ class Context < ActiveRecord::Base
     (browsers.sum{|b| passed_for b, user} / browsers.count.to_f).round
   end
   
-  def coverage(browser=nil)
-    case suites.for_browser(browser).collect(&:user).uniq.count # SQL?
-    when 0
-      'coverage_empty'
-    when 1
-      'coverage_half'
-    else
-      'coverage_full'
-    end
-  end
-  
   def browsers
     Suite.browsers.select{|b| __send__ "#{b}?"}
   end
