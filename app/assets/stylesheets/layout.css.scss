@@ -46,12 +46,12 @@ input[type=text] {
 /****************************/
 /*  D A T A   T A B L E S   */
 /****************************/
-table.data {
+table {
 	width: 100%;
 	border-collapse: collapse;
 }
 
-table.data th {
+table th {
 	padding: 6px 4px 6px 8px;
 	color: #666;
 	text-align: left;
@@ -62,13 +62,16 @@ table.data th {
 	font-size: 11px;
 }
 
-table.data td {
+table td {
 	vertical-align: middle;
-	padding: 8px 4px 8px 8px;
+	padding: 8px 6px 8px 8px;
 	border-bottom: solid 1px #E6E6E6;
 	border-right: solid 1px #E6E6E6;
-	line-height: 16px;
-	text-align: right;
+	line-height: 16px;	
+}
+
+table.data td{
+  text-align: right;
 }
 
 table.data td.title {
