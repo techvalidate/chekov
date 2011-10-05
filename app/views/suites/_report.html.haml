@@ -7,10 +7,11 @@
     %tr
       %td.title= element.description
       - User.all.each do |user|
-        - if user.checks.for_element(element).count == 0
-          %td 
-        - elsif user.checks.for_element(element).first.passed?
-          %td{style: "background-color: #{colorize 100}"}
+        - suite = user.suites.for_story(@story).for_browser(@suite.browser).first
+        - if suite
+          - if suite.checks.for_element(element).first.passed?
+            %td{style: "background-color: #{colorize 100}"}
+          - else
+            %td{style: "background-color: #{colorize 0}"}
         - else
-          %td{style: "background-color: #{colorize 0}"}
-          
+          %td

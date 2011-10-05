@@ -16,6 +16,8 @@ class Suite < ActiveRecord::Base
   accepts_nested_attributes_for :checks
   
   scope :for_browser, lambda{ |brwsr| brwsr.nil? ? where('') : where(brwsr.to_sym=>true) }
+  scope :for_story,   lambda{ |story| where('story_id = ?', story.id)}
+  
   scope :from_user,   lambda{ |usr| usr.nil? ? where('') : where(user_id: usr.id)}
   
   def browser
