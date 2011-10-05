@@ -23,14 +23,23 @@
       %td= link_to story.name, [@context, story]
       - @context.browsers.each do |browser|
         - color = {class: 'clickable'}
-        - color[:style] = "background-color: #{colorize story.passed_for(browser, @user)}" unless story.suites.for_browser(browser).count == 0 
+        - color[:style] = "background-color: #{colorize story.passed_for(browser, @user)}" unless story.suites.for_browser(browser).from_user(@user).count == 0 
         %td{color}= link_to story.passed_for(browser, @user), new_context_story_suite_path(@context, story, 'suite[browser]'=>browser)
-      %td.strong{style: "background-color: #{colorize story.passed_blended(@user)}"}= story.passed_blended(@user)
+      - if story.suites.from_user(@user).count == 0
+        %td
+      - else
+        %td.strong{style: "background-color: #{colorize story.passed_blended(@user)}"}= story.passed_blended(@user)
   %tr.strong
     %td Total
     - @context.browsers.each do |browser|
-      %td{style: "background-color: #{colorize @context.passed_for(browser, @user)}"}= @context.passed_for browser, @user
-    %td{style: "background-color: #{colorize @context.passed_blended(@user)}"}= @context.passed_blended(@user)
+      - if @context.suites.for_browser(browser).from_user(@user).count == 0
+        %td
+      - else
+        %td{style: "background-color: #{colorize @context.passed_for(browser, @user)}"}= @context.passed_for browser, @user
+    - if @context.suites.from_user(@user).count == 0
+      %td
+    - else
+      %td{style: "background-color: #{colorize @context.passed_blended(@user)}"}= @context.passed_blended(@user)
     
 %p= link_to 'New Story', new_context_story_path(@context)
 

@@ -20,6 +20,9 @@
       %td= link_to context.name, context
       - Suite.browsers.each do |browser|
         - if @user.assigned?(context, browser)
-          %td{style: "background-color: #{colorize context.passed_for(browser, @user)}"}= context.passed_for(browser, @user)
+          - if context.suites.for_browser(browser).from_user(@user).count == 0
+            %td
+          - else
+            %td{style: "background-color: #{colorize context.passed_for(browser, @user)}"}= context.passed_for(browser, @user)
         - else
-          %td 
+          %td.inactive

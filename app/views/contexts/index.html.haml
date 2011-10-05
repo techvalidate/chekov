@@ -19,17 +19,26 @@
       %td= link_to context.name, context
       - Suite.browsers.each do |browser|
         - if context.__send__ "#{browser}?"
-          - if context.suites.for_browser(browser).count == 0
+          - if context.suites.for_browser(browser).from_user(@user).count == 0
             %td
           - else
             %td{style: "background-color: #{colorize context.passed_for(browser, @user)}"}= context.passed_for(browser, @user)
         - else
           %td.inactive
-      %td.strong{style: "background-color: #{colorize context.passed_blended(@user)}"}= context.passed_blended(@user)
+      - if context.suites.from_user(@user).count == 0
+        %td
+      - else
+        %td.strong{style: "background-color: #{colorize context.passed_blended(@user)}"}= context.passed_blended(@user)
   %tr.strong
     %td Total
     - Suite.browsers.each do |browser|
-      %td{style: "background-color: #{colorize @release.passed_for(browser, @user)}"}= @release.passed_for browser, @user
-    %td{style: "background-color: #{colorize @release.passed_blended}"}= @release.passed_blended(@user)
+      - if @release.suites.for_browser(browser).from_user(@user).count == 0
+        %td
+      - else
+        %td{style: "background-color: #{colorize @release.passed_for(browser, @user)}"}= @release.passed_for browser, @user
+    - if @release.suites.from_user(@user).count == 0
+      %td
+    - else
+      %td{style: "background-color: #{colorize @release.passed_blended}"}= @release.passed_blended(@user)
       
 %p= link_to 'New Context', new_context_path
