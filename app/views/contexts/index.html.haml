@@ -22,13 +22,17 @@
           - if context.suites.for_browser(browser).from_user(@user).count == 0
             %td
           - else
-            %td{style: "background-color: #{colorize context.passed_for(browser, @user)}"}= context.passed_for(browser, @user)
+            %td.clickable{style: "background-color: #{colorize context.passed_for(browser, @user)}"}
+              = context.passed_for(browser, @user)
+              .hide= link_to '', context
         - else
           %td.inactive
       - if context.suites.from_user(@user).count == 0
         %td
       - else
-        %td.strong{style: "background-color: #{colorize context.passed_blended(@user)}"}= context.passed_blended(@user)
+        %td.strong.clickable{style: "background-color: #{colorize context.passed_blended(@user)}"}
+          = context.passed_blended(@user)
+          .hide= link_to '', context
   %tr.strong
     %td.title Total
     - Suite.browsers.each do |browser|
