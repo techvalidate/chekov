@@ -12,11 +12,11 @@
   %tr
     %th Context
     - Suite.browsers.each do |browser|
-      %th= browser
-    %th Blended
+      %th.percent= browser
+    %th.percent Blended
   - @release.contexts.each do |context|
     %tr
-      %td= link_to context.name, context
+      %td.title= link_to context.name, context
       - Suite.browsers.each do |browser|
         - if context.__send__ "#{browser}?"
           - if context.suites.for_browser(browser).from_user(@user).count == 0
@@ -30,7 +30,7 @@
       - else
         %td.strong{style: "background-color: #{colorize context.passed_blended(@user)}"}= context.passed_blended(@user)
   %tr.strong
-    %td Total
+    %td.title Total
     - Suite.browsers.each do |browser|
       - if @release.suites.for_browser(browser).from_user(@user).count == 0
         %td

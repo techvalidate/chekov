@@ -14,10 +14,10 @@
   %tr
     %th Context
     - Suite.browsers.each do |browser|
-      %th= browser
+      %th.percent= browser
   - @release.contexts.each do |context|
     %tr
-      %td= link_to context.name, context
+      %td.title= link_to context.name, context
       - Suite.browsers.each do |browser|
         - if @user.assigned?(context, browser)
           - if context.suites.for_browser(browser).from_user(@user).count == 0

@@ -68,26 +68,24 @@ table.data td {
 	border-bottom: solid 1px #E6E6E6;
 	border-right: solid 1px #E6E6E6;
 	line-height: 16px;
+	text-align: right;
 }
 
-table td.coverage_empty {
-  background: url('coverage_empty.png') no-repeat right center;
-}
-table td.coverage_half {
-  background: url('coverage_half.png') no-repeat right center;
-}
-table td.coverage_full {
-  background: url('coverage_full.png') no-repeat right center;
+table.data td.title {
+  text-align: left;
 }
 
-table td.inactive {
+table.data td.inactive {
   background-color: #eee;
 }
 
-table td.clickable {
+table.data td.clickable {
   cursor: pointer;
 }
 
+table.data th.percent {
+  width: 7em;
+}
 
 /****************************/
 /*   B A R   G R A P H      */

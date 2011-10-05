@@ -16,11 +16,11 @@
   %tr
     %th Story
     - @context.browsers.each do |browser|
-      %th= browser
-    %th Blended
+      %th.percent= browser
+    %th.percent Blended
   - @context.stories.each do |story|
     %tr
-      %td= link_to story.name, [@context, story]
+      %td.title= link_to story.name, [@context, story]
       - @context.browsers.each do |browser|
         - color = {class: 'clickable'}
         - color[:style] = "background-color: #{colorize story.passed_for(browser, @user)}" unless story.suites.for_browser(browser).from_user(@user).count == 0 
@@ -30,7 +30,7 @@
       - else
         %td.strong{style: "background-color: #{colorize story.passed_blended(@user)}"}= story.passed_blended(@user)
   %tr.strong
-    %td Total
+    %td.title Total
     - @context.browsers.each do |browser|
       - if @context.suites.for_browser(browser).from_user(@user).count == 0
         %td
