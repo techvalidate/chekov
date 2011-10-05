@@ -7,6 +7,7 @@ class Check < ActiveRecord::Base
   scope :passed, where(passed: true)
   
   scope :for_browser,  lambda{|browser| includes(:suite).where("suites.#{browser.to_sym}"=>true)}
+  scope :for_element,  lambda{|element| where('element_id = ?', element.id)}
   
   scope :from_context, lambda{|context| includes(:suite=>{:story=>:context}).where('contexts.id = ?', context.id)}
   scope :from_release, lambda{|release| includes(:suite=>{:story=>:context}).where('contexts.release_id = ?', release.id)}

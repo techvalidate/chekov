@@ -1,0 +1,16 @@
+%table.data
+  %th Element
+  - User.all.each do |user|
+    %th.percent= user.first_name
+    
+  - @story.elements.each do |element|
+    %tr
+      %td.title= element.description
+      - User.all.each do |user|
+        - if user.checks.for_element(element).count == 0
+          %td 
+        - elsif user.checks.for_element(element).first.passed?
+          %td{style: "background-color: #{colorize 100}"}
+        - else
+          %td{style: "background-color: #{colorize 0}"}
+          
