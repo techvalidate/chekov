@@ -14,4 +14,6 @@ class Check < ActiveRecord::Base
   scope :from_story,   lambda{|story|   includes(:suite=>:story).where('stories.id = ?', story.id)}
   scope :from_user,    lambda{|user|    includes(:suite).where('suites.user_id = ?', user.id) if user}
   
+  validates_uniqueness_of :element_id, :scope=>:suite_id
+  
 end
