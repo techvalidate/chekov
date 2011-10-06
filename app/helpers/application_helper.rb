@@ -27,6 +27,14 @@ module ApplicationHelper
       end
     end
     
+    def label_for(percent)
+      if percent < 1 || percent > 99
+        ''
+      else
+        percent
+      end
+    end
+    
     def name_of(browser_sym)
       case browser_sym
       when :ie6

@@ -23,7 +23,7 @@
             %td
           - else
             %td.clickable{style: "background-color: #{colorize context.passed_for(browser, @user)}"}
-              = context.passed_for(browser, @user)
+              = label_for context.passed_for(browser, @user)
               .hide= link_to '', context
         - else
           %td.inactive
@@ -31,7 +31,7 @@
         %td
       - else
         %td.strong.clickable{style: "background-color: #{colorize context.passed_blended(@user)}"}
-          = context.passed_blended(@user)
+          = label_for context.passed_blended(@user)
           .hide= link_to '', context
   %tr.strong
     %td.title Total
@@ -43,6 +43,6 @@
     - if @release.suites.from_user(@user).count == 0
       %td
     - else
-      %td{style: "background-color: #{colorize @release.passed_blended}"}= @release.passed_blended(@user)
+      %td{style: "background-color: #{colorize @release.passed_blended}"}= label_for @release.passed_blended(@user)
       
 %p= link_to 'New Context', new_context_path
