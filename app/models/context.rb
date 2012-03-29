@@ -23,6 +23,16 @@ class Context < ActiveRecord::Base
     Suite.browsers.select{|b| __send__ "#{b}?"}
   end
   
+  def copy_into(release)
+    context = release.contexts.build name: name, ie6: ie6?, ie8: ie8?, ie9: ie9?, ff: ff?, chrome: chrome?, description: description
+    context.save
+    stories.each do |story|
+      s = context.stories.build name: story.name, description: story.description
+      s.save
+    end
+    context
+  end
+  
   validates_presence_of :name, :release_id
   
 end

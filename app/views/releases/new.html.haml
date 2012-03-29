@@ -3,9 +3,5 @@
 = form_for @release do |form|
   %p Name
   %p= form.text_field :name
-
-  %p
-    = form.check_box :current
-    Current
   
   %p= form.submit 'Create'

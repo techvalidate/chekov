@@ -21,6 +21,12 @@ class Release < ActiveRecord::Base
     (total / Suite.browsers.count.to_f).round
   end
   
+  def import_contexts_from(previous)
+    previous.contexts.each do |context|
+      context.copy_into self
+    end
+  end
+  
   validates_presence_of :name
   
 end
