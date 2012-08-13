@@ -20,7 +20,9 @@
       - Suite.browsers.each do |browser|
         - if context.__send__ "#{browser}?"
           - if context.suites.for_browser(browser).from_user(@user).count == 0
-            %td
+            %td.clickable
+              .hide= link_to '', context
+
           - else
             %td.clickable{style: "background-color: #{colorize context.passed_for(browser, @user)}"}
               = label_for context.passed_for(browser, @user)
@@ -28,7 +30,8 @@
         - else
           %td.inactive
       - if context.suites.from_user(@user).count == 0
-        %td
+        %td.clickable
+          .hide=link_to '', context
       - else
         %td.strong.clickable{style: "background-color: #{colorize context.passed_blended(@user)}"}
           = label_for context.passed_blended(@user)
