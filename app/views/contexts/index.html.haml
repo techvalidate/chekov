@@ -29,7 +29,10 @@
               .hide= link_to '', context
         - else
           %td.inactive
-      - if context.suites.from_user(@user).count == 0
+
+      - if context.browsers.count == 0
+        %td.inactive
+      - elsif context.suites.from_user(@user).count == 0
         %td.clickable
           .hide=link_to '', context
       - else
@@ -39,7 +42,9 @@
   %tr.strong
     %td.title Total
     - Suite.browsers.each do |browser|
-      - if @release.suites.for_browser(browser).from_user(@user).count == 0
+      - if @release.contexts.select{|c|c.browsers.include?(browser)}.count == 0
+        %td.inactive
+      - elsif @release.suites.for_browser(browser).from_user(@user).count == 0
         %td
       - else
         %td{style: "background-color: #{colorize @release.passed_for(browser, @user)}"}= @release.passed_for browser, @user
