@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130603190245) do
+ActiveRecord::Schema.define(:version => 20130604165314) do
 
   create_table "assignments", :force => true do |t|
     t.integer   "user_id"
@@ -67,8 +67,10 @@ ActiveRecord::Schema.define(:version => 20130603190245) do
     t.text      "description"
     t.timestamp "created_at"
     t.timestamp "updated_at"
+    t.integer   "position",    :default => 0
   end
 
+  add_index "elements", ["position"], :name => "index_elements_on_position"
   add_index "elements", ["story_id"], :name => "index_elements_on_story_id"
 
   create_table "releases", :force => true do |t|
@@ -79,11 +81,11 @@ ActiveRecord::Schema.define(:version => 20130603190245) do
   end
 
   create_table "stories", :force => true do |t|
-    t.integer   "context_id"
-    t.text      "description"
-    t.timestamp "created_at"
-    t.timestamp "updated_at"
-    t.string    "name"
+    t.integer  "context_id"
+    t.text     "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "name"
   end
 
   add_index "stories", ["context_id"], :name => "index_stories_on_context_id"

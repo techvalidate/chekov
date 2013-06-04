@@ -11,6 +11,7 @@
   #Elements
     = form.fields_for :elements do |element|
       %p
+        = element.text_field :position, class: 'position'
         = element.text_field :description, class: 'story_element'
         = link_to 'x', element.object, :method=>:delete
       
