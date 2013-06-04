@@ -45,6 +45,11 @@ input[type=text] {
   font-size: 2em;
 }
 
+.edit{
+  float: right;
+  font-size: 70%;
+}
+
 /****************************/
 /*  D A T A   T A B L E S   */
 /****************************/
@@ -90,6 +95,10 @@ table.data td.clickable {
 
 table.data th.percent {
   width: 7em;
+}
+
+table td.highlight:hover{
+  border: 1px solid #000;
 }
 
 /****************************/

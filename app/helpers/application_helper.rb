@@ -43,6 +43,8 @@ module ApplicationHelper
         'IE 8'
       when :ie9
         'IE 9'
+      when :ie10
+        'IE 10'
       when :ff
         'Firefox'
       when :chrome
