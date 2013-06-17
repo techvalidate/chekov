@@ -5,6 +5,8 @@ gem 'jquery-rails'
 gem 'haml'
 gem 'newrelic_rpm'
 
+gem 'heroku-forward'
+
 group :development, :test do
   gem 'sqlite3'
 end
