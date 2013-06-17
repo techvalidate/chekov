@@ -14,6 +14,9 @@ Chekov::Application.configure do
   # Compress JavaScripts and CSS
   config.assets.compress = true
 
+  # Per Heroku https://devcenter.heroku.com/articles/rails-asset-pipeline
+  config.assets.initialize_on_precompile = false
+
   # Specifies the header that your server uses for sending files
   # (comment out if your front-end server doesn't support this)
   #config.action_dispatch.x_sendfile_header = "X-Sendfile" # Use 'X-Accel-Redirect' for nginx
