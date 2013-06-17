@@ -2,7 +2,7 @@
 
 %h3= link_to @story.name, [@context, @story]
 
-= BlueCloth.new(@story.description).to_html.html_safe
+= simple_format @story.description
 
 = form_for [@context, @story, @suite] do |f|
   %p
