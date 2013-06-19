@@ -31,7 +31,7 @@ class ContextsController < ApplicationController
   
   # POST /contexts
   def create
-    @context = @release.contexts.build params[:context]
+    @context = @release.contexts.build context_params
     @context.save!
     redirect_to @context
   rescue ActiveRecord::RecordInvalid
@@ -41,10 +41,15 @@ class ContextsController < ApplicationController
   # PUT /contexts/:id
   def update
     @context = @release.contexts.find params[:id]
-    @context.update_attributes! params[:context]
+    @context.update_attributes! context_params
     redirect_to @context
   rescue ActiveRecord::RecordInvalid
     render action: 'edit'
+  end
+
+  protected
+  def context_params
+    params.require(:context).permit(:name, :description, :ie8, :ie9, :ie10, :ff, :chrome)
   end
 
 end

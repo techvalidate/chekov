@@ -15,10 +15,9 @@ class Suite < ActiveRecord::Base
   
   accepts_nested_attributes_for :checks
   
-  scope :for_browser, lambda{ |brwsr| brwsr.nil? ? where('') : where(brwsr.to_sym=>true) }
-  scope :for_story,   lambda{ |story| where('story_id = ?', story.id)}
-  
-  scope :from_user,   lambda{ |usr| usr.nil? ? where('') : where(user_id: usr.id)}
+  scope :for_browser, ->(brwsr){ brwsr.nil? ? where('') : where(brwsr.to_sym=>true) }
+  scope :for_story,   ->(story){ where('story_id = ?', story.id)}
+  scope :from_user,   ->(usr)  { usr.nil? ? where('') : where(user_id: usr.id)}
   
   def browser
     Suite.browsers.each{|b| return b if __send__("#{b}?")}
@@ -29,6 +28,6 @@ class Suite < ActiveRecord::Base
     __send__ "#{sym}=", true
   end
   
-  validates_presence_of   :story_id, :user_id
+  validates_presence_of :story_id, :user_id
   
 end

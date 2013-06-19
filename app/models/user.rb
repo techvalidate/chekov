@@ -8,7 +8,7 @@ class User < ActiveRecord::Base
   has_many :checks,      :through=>:suites
   has_many :suites,      :dependent=>:destroy
   
-  default_scope order('last_name, first_name')
+  scope :abc, -> { order('last_name, first_name') }
   
   def name() "#{first_name} #{last_name}" end
     
@@ -16,6 +16,6 @@ class User < ActiveRecord::Base
     assignments.for_context(context).for_browser(browser).count > 0
   end
     
-  validate :email, :presence=>true, :uniqueness=>true
+  validate :email, presence: true, uniqueness: true
   
 end

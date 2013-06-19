@@ -4,4 +4,4 @@
 # If you change this key, all old signed cookies will become invalid!
 # Make sure the secret is at least 30 characters and all random,
 # no regular words or you'll be exposed to dictionary attacks.
-Chekov::Application.config.secret_token = '277a11e612e3efaf5c75de95db30485d26f7a032aeac5a941623175cae7371bee699a2c626c427bfd0eff6d8f4a6d24cdfa1dcd2a7d50498f771b2e4a5085a32'
+Chekov::Application.config.secret_key_base = '6a28929a636ac9d3b79c95a915c3fdfea57029c35e559e5149f601b5e5951905b075dfecc998a5f1ee0d19e906aab06e655b0518e87fcab342290bd27b642eae'

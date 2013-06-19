@@ -7,7 +7,7 @@ class Context < ActiveRecord::Base
   has_many :stories,     :dependent=>:destroy
   has_many :suites,      :through=>:stories
   
-  default_scope order('contexts.name')
+  scope :abc, -> { order('contexts.name') }
   
   def passed_for(browser, user=nil)
     return 0 if stories.count.zero?

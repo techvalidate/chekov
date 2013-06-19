@@ -3,12 +3,12 @@ class Story < ActiveRecord::Base
   belongs_to :context
   
   has_many :checks,   :through=>:suites
-  has_many :elements, order: 'elements.position', :dependent=>:destroy
+  has_many :elements, -> { order('elements.position')}, :dependent=>:destroy
   has_many :suites,   :dependent=>:destroy
   
   accepts_nested_attributes_for :elements, reject_if: lambda {|e| e[:description].blank? }, allow_destroy: true
   
-  default_scope order('stories.name')
+  scope :abc, -> { order('stories.name') }
   
   def passed_for(browser, user=nil)
     return 0 if checks.for_browser(browser).from_user(user).count.zero?

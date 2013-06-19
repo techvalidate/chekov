@@ -8,7 +8,7 @@ class Assignment < ActiveRecord::Base
   belongs_to :context
   belongs_to :user
   
-  scope :for_browser, lambda{|browser| where("#{browser.to_sym}"=>true)}
-  scope :for_context, lambda{|context| where(context_id: context.id)}
+  scope :for_browser, ->(browser) { where("#{browser.to_sym}"=>true) }
+  scope :for_context, ->(context) { where(context_id: context.id)    }
   
 end

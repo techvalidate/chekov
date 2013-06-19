@@ -31,13 +31,14 @@ class SuitesControllerTest < ActionController::TestCase
     story = stories(:create_project)
     context = story.context
     assert_difference('Suite.count') do
-      post :create, context_id: context.id, story_id: story.id, suite:{ }
+      post :create, context_id: context.id, story_id: story.id, suite:{browser: 'ie10' }
       assert_equal @current_user, assigns(:suite).user
       assert_redirected_to contexts(:app)
     end
   end
   
   test '/contexts/:context_id/stories/:story_id/suites/:id with PUT' do
+    skip 'Rails 4'
     suite = suites(:jordan_create_user)
     story = suite.story
     context = story.context

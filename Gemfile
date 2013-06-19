@@ -1,27 +1,21 @@
 source 'http://rubygems.org'
+ruby   '2.0.0'
 
-gem 'rails', '3.2.13'
+gem 'rails', '4.0.0.rc2'
+
+gem 'coffee-rails', '~> 4.0.0'
 gem 'jquery-rails'
 gem 'haml'
+gem 'sass-rails', '~> 4.0.0.rc2'
+gem 'turbolinks'
+gem 'uglifier', '>= 1.3.0'
 
 group :development, :test do
   gem 'sqlite3'
-end
-
-group :test do
-  gem 'turn', require: false
 end
 
 # Heroku
 group :production do
   gem 'pg'
   gem 'thin'
-end
-
-# Gems used only for assets and not required
-# in production environments by default.
-group :assets do
-  gem 'sass-rails'
-  gem 'coffee-rails'
-  gem 'uglifier'
 end

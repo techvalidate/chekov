@@ -12,10 +12,10 @@ Chekov::Application.routes.draw do
   resources :releases
   resources :users
   
-  match 'login'=>'sessions#login',         :as=>:login
-  match 'authorize'=>'sessions#authorize', :as=>:authorize
-  match 'logout'=>'sessions#logout',       :as=>:logout
+  get  'login'=>'sessions#login',         :as=>:login
+  post 'authorize'=>'sessions#authorize', :as=>:authorize
+  get  'logout'=>'sessions#logout',       :as=>:logout
   
-  root :to=>'contexts#index'
+  root 'contexts#index'
 
 end

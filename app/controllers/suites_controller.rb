@@ -21,7 +21,7 @@ class SuitesController < ApplicationController
   
   # POST /contexts/:context_id/stories/:story_id/suites
   def create
-    @suite = @story.suites.build params[:suite]
+    @suite = @story.suites.build suite_params
     @suite.user = current_user
     @suite.save!
     redirect_to @context
@@ -30,13 +30,17 @@ class SuitesController < ApplicationController
   # PUT /contexts/:context_id/stories/:story_id/suites/:id
   def update
     @suite = @story.suites.find params[:id]
-    @suite.update_attributes params[:suite]
+    @suite.update_attributes suite_params
     redirect_to @context
   end
   
   protected
   def find_story
     @story = @context.stories.find params[:story_id]
+  end
+
+  def suite_params
+    params.require(:suite).permit(:browser, checks_attributes: [:element_id, :passed, :id])
   end
   
 end

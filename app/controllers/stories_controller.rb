@@ -15,7 +15,7 @@ class StoriesController < ApplicationController
   
   # POST /contexts/:context_id/stories
   def create
-    @story = @context.stories.build params[:story]
+    @story = @context.stories.build story_params
     @story.save!
     redirect_to @context
   rescue ActiveRecord::RecordInvalid
@@ -25,10 +25,15 @@ class StoriesController < ApplicationController
   # PUT /contets/:context_id/stories/:id
   def update
     @story = @context.stories.find params[:id]
-    @story.update_attributes! params[:story]
+    @story.update_attributes! story_params
     redirect_to @context
   rescue ActiveRecord::RecordInvalid
     render action: 'show'
+  end
+
+  protected
+  def story_params
+    params.require(:story).permit(:name, :description, elements_attributes: [:id, :position, :description])
   end
   
 end
