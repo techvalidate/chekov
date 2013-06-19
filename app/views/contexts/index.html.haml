@@ -15,7 +15,7 @@
       - Suite.browsers.each do |browser|
         %th.percent= browser
       %th.percent Blended
-    - @release.contexts.each do |context|
+    - @release.contexts.abc.each do |context|
       = cache context do
         %tr
           %td.title= link_to context.name, context

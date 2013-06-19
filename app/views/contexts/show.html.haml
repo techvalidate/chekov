@@ -21,7 +21,7 @@
       - @context.browsers.each do |browser|
         %th.percent= browser
       %th.percent Blended
-    - @context.stories.each do |story|
+    - @context.stories.abc.each do |story|
       = cache story do
         %tr
           %td.title
@@ -58,7 +58,7 @@
     %th User
     - @context.browsers.each do |browser|
       %th= browser  
-  - User.all.each do |user|
+  - User.abc.each do |user|
     %tr
       %td= user.name
       - @context.browsers.each do |browser|
