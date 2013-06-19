@@ -8,6 +8,7 @@ gem 'jquery-rails'
 gem 'haml'
 gem 'rails_12factor' # Heroku
 gem 'sass-rails', '~> 4.0.0.rc2'
+gem 'turbolinks'
 gem 'uglifier', '>= 1.3.0'
 
 group :development, :test do
