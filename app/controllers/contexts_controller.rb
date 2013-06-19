@@ -5,6 +5,13 @@ class ContextsController < ApplicationController
   def index
     @user = User.find params[:user_id] unless params[:user_id].blank?
   end
+
+  # GET /contexts/list
+  def list
+    send_data @release.list_csv, 
+      type: 'text/csv; charset=iso-8859-1; header=present',
+      disposition: 'attachment; filename=list.csv'
+  end
   
   # GET /contexts/:id
   def show

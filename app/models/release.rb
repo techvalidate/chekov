@@ -1,3 +1,4 @@
+require 'csv'
 class Release < ActiveRecord::Base
   
   def self.current
@@ -7,6 +8,20 @@ class Release < ActiveRecord::Base
   has_many :contexts, :dependent=>:destroy
   has_many :stories,  :through=>:contexts
   has_many :suites,   :through=>:stories
+
+  def list_csv
+    CSV.generate do |csv|
+      contexts.each do |context|
+        csv << [context.name, nil, nil]
+        context.stories.each do |story|
+          csv << [nil, story.name, nil]
+          story.elements.each do |element|
+            csv << [nil, nil, element.description]
+          end
+        end
+      end
+    end
+  end
   
   def passed_for(browser, user=nil)
     return 0 if contexts.count.zero?

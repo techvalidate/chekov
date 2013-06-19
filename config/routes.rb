@@ -1,6 +1,7 @@
 Chekov::Application.routes.draw do
 
   resources :contexts do
+    get 'list', :on=>:collection
     resources :stories do
       resources :suites
     end
