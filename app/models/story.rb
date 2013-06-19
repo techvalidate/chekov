@@ -1,6 +1,6 @@
 class Story < ActiveRecord::Base
   
-  belongs_to :context
+  belongs_to :context, touch: true
   
   has_many :checks,   :through=>:suites
   has_many :elements, -> { order('elements.position')}, :dependent=>:destroy

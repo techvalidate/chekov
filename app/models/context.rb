@@ -1,6 +1,6 @@
 class Context < ActiveRecord::Base
   
-  belongs_to :release
+  belongs_to :release, touch: true
   
   has_many :assignments, :dependent=>:destroy
   has_many :checks,      :through=>:suites

@@ -8,7 +8,7 @@ class Suite < ActiveRecord::Base
     Suite.where(story_id: story, user_id: user).for_browser(browser).first || story.suites.build(user: user, browser: browser)
   end
   
-  belongs_to :story
+  belongs_to :story, touch: true
   belongs_to :user
   
   has_many :checks, :dependent=>:destroy

@@ -8,44 +8,47 @@
         %option{options}= u.name
     = submit_tag 'Show'
 
-%table.data
-  %tr
-    %th Context
-    - Suite.browsers.each do |browser|
-      %th.percent= browser
-    %th.percent Blended
-  - @release.contexts.each do |context|
+= cache @release do
+  %table.data
     %tr
-      %td.title= link_to context.name, context
+      %th Context
       - Suite.browsers.each do |browser|
-        - if context.__send__ "#{browser}?"
-          - if context.suites.for_browser(browser).from_user(@user).count == 0
+        %th.percent= browser
+      %th.percent Blended
+    - @release.contexts.each do |context|
+      = cache context do
+        %tr
+          %td.title= link_to context.name, context
+          - Suite.browsers.each do |browser|
+            - if context.__send__ "#{browser}?"
+              - if context.suites.for_browser(browser).from_user(@user).count == 0
+                %td
+              - else
+                %td{style: "background-color: #{colorize context.passed_for(browser, @user)}"}
+                  = label_for context.passed_for(browser, @user)
+            - else
+              %td.inactive
+
+          - if context.browsers.count == 0
+            %td.inactive
+          - elsif context.suites.from_user(@user).count == 0
             %td
           - else
-            %td{style: "background-color: #{colorize context.passed_for(browser, @user)}"}
-              = label_for context.passed_for(browser, @user)
-        - else
-          %td.inactive
+            %td.strong{style: "background-color: #{colorize context.passed_blended(@user)}"}
+              = label_for context.passed_blended(@user)
 
-      - if context.browsers.count == 0
-        %td.inactive
-      - elsif context.suites.from_user(@user).count == 0
+    %tr.strong
+      %td.title Total
+      - Suite.browsers.each do |browser|
+        - if @release.contexts.select{|c|c.browsers.include?(browser)}.count == 0
+          %td.inactive
+        - elsif @release.suites.for_browser(browser).from_user(@user).count == 0
+          %td
+        - else
+          %td{style: "background-color: #{colorize @release.passed_for(browser, @user)}"}= @release.passed_for browser, @user
+      - if @release.suites.from_user(@user).count == 0
         %td
       - else
-        %td.strong{style: "background-color: #{colorize context.passed_blended(@user)}"}
-          = label_for context.passed_blended(@user)
-  %tr.strong
-    %td.title Total
-    - Suite.browsers.each do |browser|
-      - if @release.contexts.select{|c|c.browsers.include?(browser)}.count == 0
-        %td.inactive
-      - elsif @release.suites.for_browser(browser).from_user(@user).count == 0
-        %td
-      - else
-        %td{style: "background-color: #{colorize @release.passed_for(browser, @user)}"}= @release.passed_for browser, @user
-    - if @release.suites.from_user(@user).count == 0
-      %td
-    - else
-      %td{style: "background-color: #{colorize @release.passed_blended}"}= label_for @release.passed_blended(@user)
+        %td{style: "background-color: #{colorize @release.passed_blended}"}= label_for @release.passed_blended(@user)
       
 %p= link_to 'New Context', new_context_path
