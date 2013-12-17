@@ -1,7 +1,7 @@
 class Suite < ActiveRecord::Base
   
   def self.browsers
-    [:ie8, :ie9, :ie10, :ff, :chrome]
+    [:ie8, :ie9, :ie10, :ff, :chrome, :ios, :android]
   end
   
   def self.locate(story, user, browser)
