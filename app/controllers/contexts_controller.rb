@@ -49,7 +49,7 @@ class ContextsController < ApplicationController
 
   protected
   def context_params
-    params.require(:context).permit(:name, :description, :ie8, :ie9, :ie10, :ff, :chrome)
+    params.require(:context).permit(:name, :description, :ie8, :ie9, :ie10, :ff, :chrome, :ios, :android)
   end
 
 end
