@@ -5,9 +5,9 @@ class Release < ActiveRecord::Base
     Release.where(current: true).first
   end
 
-  has_many :contexts, :dependent=>:destroy
-  has_many :stories,  :through=>:contexts
-  has_many :suites,   :through=>:stories
+  has_many :contexts, ->{order('contexts.name')}, dependent: :destroy
+  has_many :stories,  through: :contexts
+  has_many :suites,   through: :stories
 
   def list_csv
     CSV.generate do |csv|
