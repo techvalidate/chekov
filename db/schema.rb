@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131217200341) do
+ActiveRecord::Schema.define(version: 20140527212656) do
 
   create_table "assignments", force: true do |t|
     t.integer   "user_id"
@@ -117,11 +117,14 @@ ActiveRecord::Schema.define(version: 20131217200341) do
   add_index "suites", ["story_id"], name: "index_suites_on_story_id"
 
   create_table "users", force: true do |t|
-    t.string    "email"
-    t.string    "first_name"
-    t.string    "last_name"
-    t.timestamp "created_at"
-    t.timestamp "updated_at"
+    t.string   "email"
+    t.string   "first_name"
+    t.string   "last_name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.boolean  "active",     default: true
   end
+
+  add_index "users", ["active"], name: "index_users_on_active"
 
 end

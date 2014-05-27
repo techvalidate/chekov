@@ -1,13 +1,13 @@
 = cache @story do
   %table.data
     %th Element
-    - User.all.each do |user|
+    - User.abc.each do |user|
       %th.percent= user.first_name
       
     - @story.elements.each do |element|
       %tr
         %td.title= element.description
-        - User.all.each do |user|
+        - User.abc.each do |user|
           - suite = user.suites.for_story(@story).for_browser(@suite.browser).first
           - if suite
             - if suite.checks.for_element(element).first.passed?

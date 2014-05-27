@@ -2,7 +2,7 @@
   %p
     %select{name: 'user_id'}
       %option{value: ''} Everyone
-      - User.all.each do |u|
+      - User.abc.each do |u|
         - options = {value: u.id}
         - options[:selected] = 'selected' if u == @user
         %option{options}= u.name
