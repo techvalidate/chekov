@@ -51,6 +51,8 @@ module ApplicationHelper
         'Chrome'
       when :safari
         'Safari'
+      when :ios
+        'iOS'
       end
     end
 
