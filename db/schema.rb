@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140527212656) do
+ActiveRecord::Schema.define(version: 20140917003125) do
 
   create_table "assignments", force: true do |t|
     t.integer   "user_id"
@@ -25,6 +25,7 @@ ActiveRecord::Schema.define(version: 20140527212656) do
     t.boolean   "ie10",       default: false
     t.boolean   "ios",        default: false
     t.boolean   "android",    default: false
+    t.boolean   "safari",     default: false
   end
 
   add_index "assignments", ["context_id"], name: "index_assignments_on_context_id"
@@ -54,6 +55,7 @@ ActiveRecord::Schema.define(version: 20140527212656) do
     t.boolean   "ie10",        default: false
     t.boolean   "ios",         default: false
     t.boolean   "android",     default: false
+    t.boolean   "safari",      default: false
   end
 
   add_index "contexts", ["android"], name: "index_contexts_on_android"
@@ -64,6 +66,7 @@ ActiveRecord::Schema.define(version: 20140527212656) do
   add_index "contexts", ["ie9"], name: "index_contexts_on_ie9"
   add_index "contexts", ["ios"], name: "index_contexts_on_ios"
   add_index "contexts", ["release_id"], name: "index_contexts_on_release_id"
+  add_index "contexts", ["safari"], name: "index_contexts_on_safari"
 
   create_table "elements", force: true do |t|
     t.integer   "story_id"
@@ -105,6 +108,7 @@ ActiveRecord::Schema.define(version: 20140527212656) do
     t.boolean   "ie10",       default: false
     t.boolean   "ios",        default: false
     t.boolean   "android",    default: false
+    t.boolean   "safari",     default: false
   end
 
   add_index "suites", ["android"], name: "index_suites_on_android"
@@ -114,6 +118,7 @@ ActiveRecord::Schema.define(version: 20140527212656) do
   add_index "suites", ["ie8"], name: "index_suites_on_ie8"
   add_index "suites", ["ie9"], name: "index_suites_on_ie9"
   add_index "suites", ["ios"], name: "index_suites_on_ios"
+  add_index "suites", ["safari"], name: "index_suites_on_safari"
   add_index "suites", ["story_id"], name: "index_suites_on_story_id"
 
   create_table "users", force: true do |t|
