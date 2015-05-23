@@ -1,16 +1,16 @@
 source 'http://rubygems.org'
-ruby   '2.0.0'
+ruby   '2.2.1'
 
-gem 'rails', '4.0.0'
+gem 'rails'
 
-gem 'coffee-rails', '~> 4.0.0'
+gem 'coffee-rails'
 gem 'dalli'
 gem 'jquery-rails'
 gem 'haml'
 gem 'rails_12factor' # Heroku
-gem 'sass-rails', '~> 4.0.0'
+gem 'sass-rails'
 gem 'turbolinks'
-gem 'uglifier', '>= 1.3.0'
+gem 'uglifier'
 
 group :development, :test do
   gem 'sqlite3'
