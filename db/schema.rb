@@ -13,49 +13,49 @@
 
 ActiveRecord::Schema.define(version: 20140917003125) do
 
-  create_table "assignments", force: true do |t|
-    t.integer   "user_id"
-    t.integer   "context_id"
-    t.boolean   "ie8",        default: false
-    t.boolean   "ie9",        default: false
-    t.boolean   "ff",         default: false
-    t.boolean   "chrome",     default: false
-    t.timestamp "created_at"
-    t.timestamp "updated_at"
-    t.boolean   "ie10",       default: false
-    t.boolean   "ios",        default: false
-    t.boolean   "android",    default: false
-    t.boolean   "safari",     default: false
+  create_table "assignments", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "context_id"
+    t.boolean  "ie8",        default: false
+    t.boolean  "ie9",        default: false
+    t.boolean  "ff",         default: false
+    t.boolean  "chrome",     default: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.boolean  "ie10",       default: false
+    t.boolean  "ios",        default: false
+    t.boolean  "android",    default: false
+    t.boolean  "safari",     default: false
   end
 
   add_index "assignments", ["context_id"], name: "index_assignments_on_context_id"
   add_index "assignments", ["user_id"], name: "index_assignments_on_user_id"
 
-  create_table "checks", force: true do |t|
-    t.integer   "suite_id"
-    t.integer   "element_id"
-    t.boolean   "passed",     default: false
-    t.timestamp "created_at"
-    t.timestamp "updated_at"
+  create_table "checks", force: :cascade do |t|
+    t.integer  "suite_id"
+    t.integer  "element_id"
+    t.boolean  "passed",     default: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_index "checks", ["element_id"], name: "index_checks_on_element_id"
   add_index "checks", ["suite_id"], name: "index_checks_on_suite_id"
 
-  create_table "contexts", force: true do |t|
-    t.integer   "release_id"
-    t.string    "name"
-    t.timestamp "created_at"
-    t.timestamp "updated_at"
-    t.boolean   "ie8",         default: true
-    t.boolean   "ie9",         default: true
-    t.boolean   "ff",          default: true
-    t.boolean   "chrome",      default: true
-    t.text      "description"
-    t.boolean   "ie10",        default: false
-    t.boolean   "ios",         default: false
-    t.boolean   "android",     default: false
-    t.boolean   "safari",      default: false
+  create_table "contexts", force: :cascade do |t|
+    t.integer  "release_id"
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.boolean  "ie8",         default: true
+    t.boolean  "ie9",         default: true
+    t.boolean  "ff",          default: true
+    t.boolean  "chrome",      default: true
+    t.text     "description"
+    t.boolean  "ie10",        default: false
+    t.boolean  "ios",         default: false
+    t.boolean  "android",     default: false
+    t.boolean  "safari",      default: false
   end
 
   add_index "contexts", ["android"], name: "index_contexts_on_android"
@@ -68,47 +68,47 @@ ActiveRecord::Schema.define(version: 20140917003125) do
   add_index "contexts", ["release_id"], name: "index_contexts_on_release_id"
   add_index "contexts", ["safari"], name: "index_contexts_on_safari"
 
-  create_table "elements", force: true do |t|
-    t.integer   "story_id"
-    t.text      "description"
-    t.timestamp "created_at"
-    t.timestamp "updated_at"
-    t.integer   "position",    default: 0
+  create_table "elements", force: :cascade do |t|
+    t.integer  "story_id"
+    t.text     "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "position",    default: 0
   end
 
   add_index "elements", ["position"], name: "index_elements_on_position"
   add_index "elements", ["story_id"], name: "index_elements_on_story_id"
 
-  create_table "releases", force: true do |t|
-    t.string    "name"
-    t.boolean   "current",    default: true
-    t.timestamp "created_at"
-    t.timestamp "updated_at"
+  create_table "releases", force: :cascade do |t|
+    t.string   "name"
+    t.boolean  "current",    default: true
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
-  create_table "stories", force: true do |t|
-    t.integer   "context_id"
-    t.text      "description"
-    t.timestamp "created_at"
-    t.timestamp "updated_at"
-    t.string    "name"
+  create_table "stories", force: :cascade do |t|
+    t.integer  "context_id"
+    t.text     "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "name"
   end
 
   add_index "stories", ["context_id"], name: "index_stories_on_context_id"
 
-  create_table "suites", force: true do |t|
-    t.integer   "user_id"
-    t.integer   "story_id"
-    t.timestamp "created_at"
-    t.timestamp "updated_at"
-    t.boolean   "ie8",        default: false
-    t.boolean   "ie9",        default: false
-    t.boolean   "ff",         default: false
-    t.boolean   "chrome",     default: false
-    t.boolean   "ie10",       default: false
-    t.boolean   "ios",        default: false
-    t.boolean   "android",    default: false
-    t.boolean   "safari",     default: false
+  create_table "suites", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "story_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.boolean  "ie8",        default: false
+    t.boolean  "ie9",        default: false
+    t.boolean  "ff",         default: false
+    t.boolean  "chrome",     default: false
+    t.boolean  "ie10",       default: false
+    t.boolean  "ios",        default: false
+    t.boolean  "android",    default: false
+    t.boolean  "safari",     default: false
   end
 
   add_index "suites", ["android"], name: "index_suites_on_android"
@@ -121,7 +121,7 @@ ActiveRecord::Schema.define(version: 20140917003125) do
   add_index "suites", ["safari"], name: "index_suites_on_safari"
   add_index "suites", ["story_id"], name: "index_suites_on_story_id"
 
-  create_table "users", force: true do |t|
+  create_table "users", force: :cascade do |t|
     t.string   "email"
     t.string   "first_name"
     t.string   "last_name"
