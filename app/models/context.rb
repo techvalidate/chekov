@@ -24,7 +24,7 @@ class Context < ActiveRecord::Base
   end
 
   def copy_into(release)
-    context = release.contexts.build name: name, ie8: ie8?, ie9: ie9?, ie10: ie10?, ff: ff?, chrome: chrome?, safari: safari?, description: description
+    context = release.contexts.build name: name, ie8: ie8?, ie9: ie9?, ie10: ie10?, ie11: ie11?, ff: ff?, chrome: chrome?, safari: safari?, description: description
     context.save!
     stories.each do |s|
       story = context.stories.build name: s.name, description: s.description

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140917003125) do
+ActiveRecord::Schema.define(version: 20150526195516) do
 
   create_table "assignments", force: :cascade do |t|
     t.integer  "user_id"
@@ -26,6 +26,7 @@ ActiveRecord::Schema.define(version: 20140917003125) do
     t.boolean  "ios",        default: false
     t.boolean  "android",    default: false
     t.boolean  "safari",     default: false
+    t.boolean  "ie11",       default: false
   end
 
   add_index "assignments", ["context_id"], name: "index_assignments_on_context_id"
@@ -56,12 +57,14 @@ ActiveRecord::Schema.define(version: 20140917003125) do
     t.boolean  "ios",         default: false
     t.boolean  "android",     default: false
     t.boolean  "safari",      default: false
+    t.boolean  "ie11",        default: false
   end
 
   add_index "contexts", ["android"], name: "index_contexts_on_android"
   add_index "contexts", ["chrome"], name: "index_contexts_on_chrome"
   add_index "contexts", ["ff"], name: "index_contexts_on_ff"
   add_index "contexts", ["ie10"], name: "index_contexts_on_ie10"
+  add_index "contexts", ["ie11"], name: "index_contexts_on_ie11"
   add_index "contexts", ["ie8"], name: "index_contexts_on_ie8"
   add_index "contexts", ["ie9"], name: "index_contexts_on_ie9"
   add_index "contexts", ["ios"], name: "index_contexts_on_ios"
@@ -109,12 +112,14 @@ ActiveRecord::Schema.define(version: 20140917003125) do
     t.boolean  "ios",        default: false
     t.boolean  "android",    default: false
     t.boolean  "safari",     default: false
+    t.boolean  "ie11",       default: false
   end
 
   add_index "suites", ["android"], name: "index_suites_on_android"
   add_index "suites", ["chrome"], name: "index_suites_on_chrome"
   add_index "suites", ["ff"], name: "index_suites_on_ff"
   add_index "suites", ["ie10"], name: "index_suites_on_ie10"
+  add_index "suites", ["ie11"], name: "index_suites_on_ie11"
   add_index "suites", ["ie8"], name: "index_suites_on_ie8"
   add_index "suites", ["ie9"], name: "index_suites_on_ie9"
   add_index "suites", ["ios"], name: "index_suites_on_ios"

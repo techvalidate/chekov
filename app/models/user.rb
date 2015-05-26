@@ -17,6 +17,6 @@ class User < ActiveRecord::Base
     assignments.for_context(context).for_browser(browser).count > 0
   end
 
-  validate :email, presence: true, uniqueness: true
+  validates :email, presence: true, uniqueness: true
 
 end
