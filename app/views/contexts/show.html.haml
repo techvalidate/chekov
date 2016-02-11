@@ -68,3 +68,8 @@
             = hidden_field_tag :user_id, user.id
             = hidden_field_tag :browser, browser
             = check_box_tag 'assignment', 'true', user.assigned?(@context, browser), user_id: user.id, context_id: @context.id, browser: browser, class: 'assignment'
+
+
+%br
+%br
+%p= button_to 'Clone', [:clone, @context], method: :post, data: { confirm: 'Are you sure?' }

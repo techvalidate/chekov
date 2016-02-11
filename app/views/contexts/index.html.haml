@@ -52,3 +52,9 @@
         %td{style: "background-color: #{colorize @release.passed_blended}"}= label_for @release.passed_blended(@user)
 
 %p= link_to 'New Context', new_context_path
+
+- if @release.contexts.hidden.any?
+  %p Hidden Contexts:
+  %ul
+    - @release.contexts.hidden.each do |c|
+      %li= link_to c.name, [:edit, c]

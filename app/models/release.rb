@@ -27,12 +27,12 @@ class Release < ActiveRecord::Base
     end
   end
 
-  def passed_for(browser, user=nil)
+  def passed_for(browser, user = nil)
     return 0 if contexts.count.zero?
-    (stories.to_a.sum{|s|s.passed_for browser, user} / stories.count.to_f).round
+    (stories.to_a.sum{|s| s.passed_for browser, user} / stories.count.to_f).round
   end
 
-  def passed_blended(user=nil)
+  def passed_blended(user = nil)
     total = 0
     Suite.browsers.each do |browser|
       total = total + passed_for(browser, user)

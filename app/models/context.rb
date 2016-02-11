@@ -8,6 +8,7 @@ class Context < ActiveRecord::Base
   has_many :suites,        through: :stories
 
   scope :abc,     ->{ order('contexts.name') }
+  scope :hidden,  ->{ where(visible: false)  }
   scope :visible, ->{ where(visible: true)   }
 
   def passed_for(browser, user = nil)

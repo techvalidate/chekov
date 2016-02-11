@@ -47,6 +47,13 @@ class ContextsController < ApplicationController
     render action: 'edit'
   end
 
+  def clone
+    @context = @release.contexts.find params[:id]
+    clone = @context.copy_into @release
+    clone.update_attribute :name, "#{clone.name} Copy"
+    redirect_to clone
+  end
+
   protected
   def context_params
     params.require(:context).permit(:name, :description, :ie8, :ie9, :ie10, :ie11, :ff, :chrome, :safari, :ios, :android, :visible)
