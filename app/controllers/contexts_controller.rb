@@ -1,5 +1,5 @@
 class ContextsController < ApplicationController
-  before_filter :find_current_release
+  before_action :find_current_release
 
   # GET /
   def index
@@ -49,7 +49,7 @@ class ContextsController < ApplicationController
 
   protected
   def context_params
-    params.require(:context).permit(:name, :description, :ie8, :ie9, :ie10, :ie11, :ff, :chrome, :safari, :ios, :android)
+    params.require(:context).permit(:name, :description, :ie8, :ie9, :ie10, :ie11, :ff, :chrome, :safari, :ios, :android, :visible)
   end
 
 end

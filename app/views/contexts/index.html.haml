@@ -12,14 +12,14 @@
   %table.data
     %tr
       %th Context
-      - Suite.browsers.each do |browser|
+      - @release.browsers.each do |browser|
         %th.percent= browser
       %th.percent Blended
-    - @release.contexts.abc.each do |context|
+    - @release.contexts.visible.abc.each do |context|
       = cache context do
         %tr
           %td.title= link_to context.name, context
-          - Suite.browsers.each do |browser|
+          - @release.browsers.each do |browser|
             - if context.__send__ "#{browser}?"
               - if context.suites.for_browser(browser).from_user(@user).count == 0
                 %td
@@ -39,7 +39,7 @@
 
     %tr.strong
       %td.title Total
-      - Suite.browsers.each do |browser|
+      - @release.browsers.each do |browser|
         - if @release.contexts.select{|c|c.browsers.include?(browser)}.count == 0
           %td.inactive
         - elsif @release.suites.for_browser(browser).from_user(@user).count == 0
@@ -50,5 +50,5 @@
         %td
       - else
         %td{style: "background-color: #{colorize @release.passed_blended}"}= label_for @release.passed_blended(@user)
-      
+
 %p= link_to 'New Context', new_context_path

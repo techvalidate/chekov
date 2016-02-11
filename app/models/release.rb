@@ -1,6 +1,6 @@
 require 'csv'
 class Release < ActiveRecord::Base
-  
+
   def self.current
     Release.where(current: true).first
   end
@@ -8,6 +8,10 @@ class Release < ActiveRecord::Base
   has_many :contexts, ->{order('contexts.name')}, dependent: :destroy
   has_many :stories,  through: :contexts
   has_many :suites,   through: :stories
+
+  def browsers
+    contexts.collect(&:browsers).flatten.uniq!
+  end
 
   def list_csv
     CSV.generate do |csv|
@@ -22,12 +26,12 @@ class Release < ActiveRecord::Base
       end
     end
   end
-  
+
   def passed_for(browser, user=nil)
     return 0 if contexts.count.zero?
     (stories.to_a.sum{|s|s.passed_for browser, user} / stories.count.to_f).round
   end
-  
+
   def passed_blended(user=nil)
     total = 0
     Suite.browsers.each do |browser|
@@ -35,13 +39,13 @@ class Release < ActiveRecord::Base
     end
     (total / Suite.browsers.count.to_f).round
   end
-  
+
   def import_contexts_from(previous)
     previous.contexts.each do |context|
       context.copy_into self
     end
   end
-  
+
   validates_presence_of :name
-  
+
 end
