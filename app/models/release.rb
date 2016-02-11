@@ -34,10 +34,10 @@ class Release < ActiveRecord::Base
 
   def passed_blended(user = nil)
     total = 0
-    Suite.browsers.each do |browser|
+    browsers.each do |browser|
       total = total + passed_for(browser, user)
     end
-    (total / Suite.browsers.count.to_f).round
+    (total / browsers.count.to_f).round
   end
 
   def import_contexts_from(previous)
