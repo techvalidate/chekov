@@ -1,7 +1,8 @@
 source 'http://rubygems.org'
-ruby   '2.2.1'
+ruby   '2.2.4'
 
-gem 'rails', '4.2.1'
+gem 'rails', '4.2.5.1'
+gem 'pg', '0.18.2'
 
 gem 'coffee-rails', '4.1.0'
 gem 'dalli', '2.7.4'
@@ -19,6 +20,5 @@ end
 # Heroku
 group :production do
   gem 'memcachier', '0.0.2'
-  gem 'pg', '0.18.2'
   gem 'unicorn', '4.9.0'
 end

@@ -1,10 +1,15 @@
 class ReleasesController < ApplicationController
-  
+  before_action :find_current_release
+
+  def index
+    @releases = Release.order(created_at: :desc)
+  end
+
   # GET /release/new
   def new
     @release = Release.new
   end
-  
+
   # POST /release
   def create
     @last_release = @release = Release.current
@@ -21,5 +26,5 @@ class ReleasesController < ApplicationController
   def release_params
     params.require(:release).permit(:name)
   end
-  
+
 end

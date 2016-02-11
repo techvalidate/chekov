@@ -1,0 +1,13 @@
+%h1 All Releases
+
+%table.data
+  %tr
+    %th Name
+    %th Date
+    %th Contexts
+
+  - @releases.each do |release|
+    %tr
+      %td= release.name
+      %td= release.created_at.to_s :long
+      %td= release.contexts.count
